@@ -1,0 +1,86 @@
+/*
+ *	print.css
+ */
+
+
+/*    Markup Generator Help
+ ******************************/
+
+#help,
+#help a,
+#help code {
+	color: black;
+	background: white;
+	}
+
+#help p>code,
+#help li>code {
+	letter-spacing: -0.1em;
+	}
+
+#help a:after {
+	content: " {" attr(href) "} ";
+	font-weight: normal;
+	font-size: 0.8em;
+	}
+
+#help #toc a:after {
+	content: "";
+	}
+
+#help .nav,
+#help .yada {
+	display: none;
+	}
+
+
+/*    Showsource
+ *******************/
+
+.showsource,
+.showsource a,
+.showsource code,
+.showsource font {
+	color: black;
+	background: white;
+	font-weight: normal;
+	}
+
+.showsource h1,
+.showsource form {
+	display: none;
+	}
+
+.showsource blockquote {
+	margin: -1em;
+	border: none;
+	}
+
+.showsource font[color="#FF8000"] {
+	font-style: italic;
+	}
+
+
+/*    vi Cheat Sheet
+ ***********************/
+
+#vi,
+#vi #all {
+	margin: 0;
+	padding: 0;
+	border: none;
+	}
+
+#vi,
+#vi a,
+#vi h1,
+#vi #all {
+	background: white;
+	color: black
+	}
+
+#vi #obj,
+#vi #misc,
+#vi #excmd {
+	page-break-before: always;
+	}

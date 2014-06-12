@@ -1,0 +1,607 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>PHP Reference</title>
+<meta name="author" content="Ben Thornton">
+<link rel="stylesheet" type="text/css" href="styles/style.css">
+</head>
+
+<body class="ample" id="phpref">
+
+<h1>PHP Reference</h1>
+
+<ul class="skip">
+<li><a href="#toc" accesskey="2">Table of Contents</a></li>
+<li><a href="/~bthorn01/index.php" accesskey="1">Home Page</a></li>
+<li><a href="colophon.php#access" accesskey="0">Accessibility Statement</a></li>
+</ul>
+
+<p><dfn>PHP is a server-side programming language developed specifically
+for the Web. It stands for "PHP: Hypertext Preprocessor."</dfn></p>
+
+<p>These are my notes from <cite>Core PHP Programming, 3rd ed.</cite> by
+Leon Atkinson and Zeev Suraski. The entire book is <a
+href="http://safari.phptr.com/JVXSL.asp?xmlid=0-13-089398-6/d1e1723">available
+online</a> (first fortnight free).</p>
+
+<p class="related">See also:
+<a href="http://www.php.net/">PHP.net</a>,
+<a href="http://zend.com/">Zend.com</a>,
+<a href="http://www.w3schools.com/">W3 Schools</a>
+</p>
+
+<hr><h2 id="toc">Table of Contents</h2>
+
+<h3 id="toc-brief">Brief</h3><ol>
+<!--
+<li><a href="#toc">Table of Contents</a></li>
+-->
+<li><a href="#syntax">Syntax</a></li>
+<li><a href="#operators">Operators</a></li>
+<!--
+<li><a href="#statements">Control Statements</a></li>
+-->
+<li><a href="#glossary">Glossary</a></li>
+</ol>
+
+
+<h3 id="toc-complete">Complete</h3><ol>
+<!--
+<li><a href="#toc">Table of Contents</a></li><ol>
+  <li><a href="#toc-brief">Brief</a></li>
+  <li><a href="#toc-complete">Complete</a></li>
+</ol></li>
+-->
+<li><a href="#syntax">Syntax</a><ol>
+  <li><a href="#phptags">PHP Tags</a></li>
+  <li><a href="#grammar">Grammar</a></li>
+  <li><a href="#quotes">Quoting Strings</a></li>
+  <li><a href="#escape">Escape Sequences</a></li>
+  <li><a href="#variables">Variables</a></li>
+  <li><a href="#constants">Constants</a></li>
+  <li><a href="#arrays">Arrays</a></li>
+  <li><a href="#functions">Functions</a></li>
+  <li><a href="#classes">Classes</a></li>
+  <li><a href="#objects">Objects</a></li>
+</ol></li>
+<li><a href="#operators">Operators</a><ol>
+  <li><a href="#arithmetic">Arithmetic Operators</a></li>
+  <li><a href="#assignment">Assignment Operators</a></li>
+  <li><a href="#relational">Relational Operators</a></li>
+  <li><a href="#logical">Logical Operators</a></li>
+  <li><a href="#bitwise">Bitwise Operators</a></li>
+  <li><a href="#casting">Casting Operators</a></li>
+  <li><a href="#miscellaneous">Miscellaneous Operators</a></li>
+</ol></li>
+<!--
+<li><a href="#statements">Control Statements</a></li>
+-->
+<li><a href="#glossary">Glossary</a></li>
+</ol>
+
+<hr><h2 id="syntax">Syntax</h2>
+
+<h3 id="phptags">PHP Tags</h3>
+<p>PHP scripts happily coexist with HTML in the same file. The way we
+distinguish between PHP and HTML code is by enclosing the script between
+<code>&lt;?php</code> and <code>?&gt;</code> tags. Technically, you can
+get away with leaving out the <code>php</code>, but XML gets confused
+without it, so it's a good idea for forward-compatibility. See
+<a href="http://www.php.net/manual/en/language.basic-syntax.php#language.basic-syntax.phpmode">Escaping from HTML</a>
+in the online manual, or pp. 1033-4 in the text for a complete
+description of PHP tags.</p>
+
+<h3 id="grammar">Grammar</h3>
+<p>PHP scripts generally follow the same grammatical rules as C, C++,
+and Java.</p><ul>
+<li>PHP is case sensitive.</li>
+<li>PHP does not care about whitespace.</li>
+<li>Each statement must end with a semicolon.</li>
+<li>Blocks of code (such as functions, classes, or multi-line control
+statements) must be enclosed with curly
+braces.</li> <li>Strings and characters must be quoted.</li>
+</ul>
+
+<h3 id="quotes">Quoting Strings</h3>
+<p>Single-quotes interpret everything inside them literally, with two
+exceptions: the escape sequences <code>\'</code> and <code>\\</code>
+(interpreted as a single-quote and a backslash, respectively). Double
+quotes support several more escape sequences, and <a
+href="#interpolate">interpolate</a> variables too.</p>
+<p class="related">See also:
+<a href="http://us4.php.net/manual/en/ref.info.php#ini.magic-quotes-gpc">
+  <code>magic_quotes_gpc</code></a>,
+<a href="http://us4.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime">
+  <code>magic_quotes_runtime</code></a>,
+<a href="http://us4.php.net/manual/en/function.get-magic-quotes-gpc.php">
+  <code>get_magic_quotes_gpc()</code></a>,
+<a href="http://us4.php.net/manual/en/function.get-magic-quotes-runtime.php">
+  <code>get_magic_quotes_runtime()</code></a>,
+<a href="http://us4.php.net/manual/en/function.set-magic-quotes-gpc.php">
+  <code>set_magic_quotes_gpc()</code></a>,
+<a href="http://us4.php.net/manual/en/function.set-magic-quotes-runtime.php">
+  <code>set_magic_quotes_runtime()</code></a>,
+<a href="http://us4.php.net/manual/en/function.addslashes.php">
+  <code>addslashes()</code></a>,
+<a href="http://us4.php.net/manual/en/function.stripslashes.php">
+  <code>stripslashes()</code></a>
+</p>
+
+<table id="escape" cellspacing="0"><tr>
+<th>Escape Sequence</th>
+<th>Description</th>
+<th><a href="#interpolate">Interpolated</a> when inside:</th>
+</tr><tr>
+<td><code>\\</code></td>
+<td class="desc">Backslash</td>
+<td class="desc">Single or Double Quotes</td>
+</tr><tr>
+<td><code>\'</code></td>
+<td class="desc">Single Quote</td>
+<td class="desc">Single Quotes only</td>
+</tr><tr>
+<td><code>\"</code></td>
+<td class="desc">Double Quote</td>
+<td class="desc" rowspan="6">Double Quotes only</td>
+</tr><tr>
+<td><code>\$</code></td>
+<td class="desc">Dollar Sign</td>
+</tr><tr>
+<td><code>\n</code></td>
+<td class="desc">Newline</td>
+</tr><tr>
+<td><code>\r</code></td>
+<td class="desc">Carriage Return</td>
+</tr><tr>
+<td><code>\t</code></td>
+<td class="desc">Horizontal Tab</td>
+</tr><tr>
+<td><code>\x00 - \xFF</code></td>
+<td class="desc">Hex Character</td>
+</tr></table>
+
+<h3 id="variables">Variables</h3>
+<p>Variable names must begin with a dollar sign (e.g.
+<code>$variableName</code>). They should begin with a lowercase letter
+and delimit multiple words with capitals. They cannot begin with a
+number. Hyphens are a bad idea, but underscores are okay. Those beginning
+with an underscore have special meaning (sort of like keywords).</p>
+<p>When assigning a value to a variable, the value to be assigned always
+goes to the right of the assignment operator (e.g. <code>$foo =
+2 + 2;</code>).
+
+<h3 id="constants">Constants</h3>
+<p>The <code>define()</code> function declares constants. You should name
+constants using all capital letters. Once declared, a constant cannot be
+modified.</p>
+
+<h3 id="arrays">Arrays</h3>
+<p>Arrays are just collections of variables. They (like the various data
+types) need not be explicitly declared. They can be, however, by using the
+<code>array()</code> function.</p>
+<p class="related">See also:
+<a href="http://us4.php.net/manual/en/control-structures.foreach.php">
+  <code>foreach</code></a>,
+<a href="http://us4.php.net/manual/en/function.count.php">
+  <code>count()</code></a>,
+<a href="http://us4.php.net/manual/en/function.array-pop.php">
+  <code>array_pop()</code></a>,
+<a href="http://us4.php.net/manual/en/function.array-push.php">
+  <code>array_push()</code></a>,
+<a href="http://us4.php.net/manual/en/ref.array.php">
+  <code>other&nbsp;array&nbsp;functions</code></a>
+</p>
+
+<h3 id="functions">Functions</h3>
+<p>The keyword <code>function</code> defines functions. Like variables,
+the first letter of a function should not be capitalized. A function
+may receive zero or more arguments, which must be declared inside the
+parentheses as variables. Functions may be overloaded.</p>
+<blockquote><pre>
+<code><strong>function</strong> <span
+title="Function Name">doSomething</span>(<span
+title="Argument">$withThis</span>) {
+	<em>expressions go here</em>
+	}</code></pre></blockquote>
+
+<h3 id="classes">Classes</h3>
+<p>Define classes using the keyword <code>class</code>. The first letter
+of a classname should be capitalized. PHP supports single-inheritance.
+This means that classes can extend one another, such that each child may
+only have a single parent. The keyword <code>extends</code> does what it
+says it does.</p>
+<blockquote><pre>
+<code><strong>class</strong> Child <strong>extends</strong> Parent {
+	<em>methods and properties go here</em>
+	}</code></pre></blockquote>
+<p>Classes contain methods and properties. Page 104 says it best:</p>
+<blockquote><p>From an abstract perspective, methods are things an
+object does, and properties are characteristics of the object. From a
+programming perspective, methods are functions and properties are
+variables.</p></blockquote>
+
+<h3 id="objects">Objects</h3>
+<p>Objects are instances of classes. Think of a class as a template,
+and an object as an end product. One class may produce many objects,
+all of which will behave similarly. You may create new objects by
+using the <code>new</code> keyword. It is customary to store new
+objects inside variables.</p>
+<blockquote><pre>
+<code>$thing = <strong>new</strong> Doodad(<em>"red", "shiny"</em>);</code>
+</pre></blockquote>
+<p>The idea is that objects pass objects back and forth between other
+objects, sort of like functions pass variables back and forth. However,
+objects can do and be things that variables cannot. Objects also play
+nicely with foreign objects.</p>
+
+<hr><h2 id="operators">Operators</h2>
+
+<p>Operators manipulate data. The data being manipulated are called
+operands. Unary operators work with one operand, binary operators
+work with two. There is only one ternary operator.
+
+<h3 id="arithmetic">Arithmetic Operators</h3>
+<table cellspacing="0"
+summary="Lists and describes PHP's arithmetic operators, with examples."><tr>
+  <th>Operator</th>
+  <th>Purpose</th>
+  <th>Example</th>
+  <th>Result</th>
+</tr><tr>
+  <td><code>+</code></td>
+  <td class="desc">Addition<br>Explicit positive sign</td>
+  <td><code>12 + 1</code></td>
+  <td><code>13</code></td>
+</tr><tr>
+  <td><code>-</code></td>
+  <td class="desc">Subtraction<br>Negation</td>
+  <td><code>9 - 12</code></td>
+  <td><code>-3</code></td>
+</tr><tr>
+  <td><code>*</code></td>
+  <td class="desc">Multiplication</td>
+  <td><code>3 * 4</code></td>
+  <td><code>12</code></td>
+</tr><tr>
+  <td><code>/</code></td>
+  <td class="desc">Division</td>
+  <td><code>6 / 2</code></td>
+  <td><code>3</code></td>
+</tr><tr>
+  <td><code>%</code></td>
+  <td class="desc">Modulo division<br>(remainder)</td>
+  <td><code>5 % 2</code></td>
+  <td><code>1</code></td>
+</tr><tr>
+  <td><code>++</code></td>
+  <td class="desc">Increment</td>
+  <td><code>7++</code></td>
+  <td><code>8</code></td>
+</tr><tr>
+  <td><code>--</code></td>
+  <td class="desc">Decrement</td>
+  <td><code>7--</code></td>
+  <td><code>6</code></td>
+</tr></table>
+
+<p>Beware of the distinction between post-increment (<code>$value++</code>)
+and pre-increment (<code>++$value</code>). Same goes for the decrement
+operator.</p>
+
+<h3 id="assignment">Assignment Operators</h3>
+<table cellspacing="0" summary="Lists PHP's assignment operators."><tr>
+  <th>Operator</th>
+  <th>Purpose</th>
+  <th>Usage</th>
+</tr><tr>
+  <td><code>=</code></td>
+  <td class="desc">Assign right to left</td>
+  <td><code>$a = 13</code></td>
+</tr><tr>
+  <td><code>+=</code></td>
+  <td class="desc">Add right to left</td>
+  <td><code>$a += 3</code></td>
+</tr><tr>
+  <td><code>-=</code></td>
+  <td class="desc">Subtract right from left</td>
+  <td><code>$a -= 7</code></td>
+</tr><tr>
+  <td><code>*=</code></td>
+  <td class="desc">Multiply left by right</td>
+  <td><code>$a *= 2</code></td>
+</tr><tr>
+  <td><code>\=</code></td>
+  <td class="desc">Divide left by right</td>
+  <td><code>$a \= 5</code></td>
+</tr><tr>
+  <td><code>%=</code></td>
+  <td class="desc">Divide left by right,<br>set left to remainder</td>
+  <td><code>$a %= 21</code></td>
+</tr><tr>
+  <td><code>&amp;=</code></td>
+  <td class="desc">Compute bitwise-AND,<br>set left to result</td>
+  <td><code>$a &amp;= $b</code></td>
+</tr><tr>
+  <td><code>|=</code></td>
+  <td class="desc">Compute bitwise-OR,<br>set left to result</td>
+  <td><code>$a |= $b</code></td>
+</tr><tr>
+  <td><code>^=</code></td>
+  <td class="desc">Compute bitwise-XOR,<br>set left to result</td>
+  <td><code>$a ^= $b</code></td>
+</tr><tr>
+  <td><code>.=</code></td>
+  <td class="desc">Concatenate values</td>
+  <td><code>$a .= $b</code></td>
+</tr></table>
+
+<p>Using assignment operators to shorten equivalent mathematical
+expressions actually produces more efficient code, as PHP only has to
+call a variable once rather than twice.</p>
+
+<h3 id="relational">Relational Operators</h3>
+<table cellspacing="0" summary="Lists PHP's relational operators."><tr>
+  <th>Operator</th>
+  <th>Purpose</th>
+  <th>Usage</th>
+</tr><tr>
+  <td><code>&lt;</code></td>
+  <td class="desc">Is less than</td>
+  <td><code>$a &lt; 12</code></td>
+</tr><tr>
+  <td><code>&gt;</code></td>
+  <td class="desc">Is greater than</td>
+  <td><code>$a $gt; 3</code></td>
+</tr><tr>
+  <td><code>&lt;=</code></td>
+  <td class="desc">Is less than or equal to</td>
+  <td><code>$a &lt;= $b</code></td>
+</tr><tr>
+  <td><code>&gt;=</code></td>
+  <td class="desc">Is greater than or equal to</td>
+  <td><code>$a $gt;= 9</code></td>
+</tr><tr>
+  <td><code>==</code></td>
+  <td class="desc">Is equal to</td>
+  <td><code>$a == 1</code></td>
+</tr><tr>
+  <td><code>===</code></td>
+  <td class="desc">Is identical to</td>
+  <td><code>$a === TRUE</code></td>
+</tr><tr>
+  <td><code>!=</code></td>
+  <td class="desc">Is not equal to</td>
+  <td><code>$a != 1</code></td>
+</tr><tr>
+  <td><code>!==</code></td>
+  <td class="desc">Is not identical to</td>
+  <td><code>$a !== NULL</code></td>
+</tr></table>
+
+<h3 id="logical">Logical Operators</h3>
+<table cellspacing="0" summary="Lists PHP's logical operators."><tr>
+  <th>Operator</th>
+  <th>Purpose</th>
+  <th>Usage</th>
+</tr><tr>
+  <td><code>AND</code></td>
+  <td class="desc">Logical and</td>
+  <td><code>$a AND $b</code></td>
+</tr><tr>
+  <td><code>&amp;&amp;</code></td>
+  <td class="desc">Logical and</td>
+  <td><code>$a &amp;&amp; $b</code></td>
+</tr><tr>
+  <td><code>OR</code></td>
+  <td class="desc">Logical or</td>
+  <td><code>$a OR $b</code></td>
+</tr><tr>
+  <td><code>||</code></td>
+  <td class="desc">Logical or</td>
+  <td><code>$a || $b</code></td>
+</tr><tr>
+  <td><code>XOR</code></td>
+  <td class="desc">Exclusive or</td>
+  <td><code>$a XOR $b</code></td>
+</tr><tr>
+  <td><code>!</code></td>
+  <td class="desc">Logical not</td>
+  <td><code>! $a</code></td>
+</tr></table>
+
+<!--
+<h4>Truth Table for Logical Operators</h4>
+
+<table cellspacing="0"><tr>
+  <th><code>p</code></th>
+  <th><code>q</code></th>
+</tr><tr>
+  <td><code>FALSE</code></td>
+  <td><code>FALSE</code></td>
+</tr><tr>
+  <td><code>FALSE</code></td>
+  <td><code>TRUE</code></td>
+</tr><tr>
+  <td><code>TRUE</code></td>
+  <td><code>FALSE</code></td>
+</tr><tr>
+  <td><code>TRUE</code></td>
+  <td><code>TRUE</code></td>
+</tr></table>
+
+<table cellspacing="0"><tr>
+  <th><code>p AND q</code></th>
+  <th><code>p OR q</code></th>
+  <th><code>p XOR q</code></th>
+  <th><code>!p</code></th>
+</tr><tr>
+  <td><code>FALSE</code></td>
+  <td><code>FALSE</code></td>
+  <td><code>FALSE</code></td>
+  <td><code>TRUE</code></td>
+</tr><tr>
+  <td><code>FALSE</code></td>
+  <td><code>TRUE</code></td>
+  <td><code>TRUE</code></td>
+  <td><code>TRUE</code></td>
+</tr><tr>
+  <td><code>FALSE</code></td>
+  <td><code>TRUE</code></td>
+  <td><code>TRUE</code></td>
+  <td><code>FALSE</code></td>
+</tr><tr>
+  <td><code>TRUE</code></td>
+  <td><code>TRUE</code></td>
+  <td><code>FALSE</code></td>
+  <td><code>FALSE</code></td>
+</tr></table>
+-->
+
+<h3 id="bitwise">Bitwise Operators</h3>
+<!-- To do:
+     Use binary examples (e.g. 1010) with a results column, instead of
+     using meaningless variables. How does one specify numbers in bases
+     other than ten?
+-->
+<table cellspacing="0" summary="Lists PHP's bitwise operators."><tr>
+  <th>Operator</th>
+  <th>Purpose</th>
+  <th>Usage</th>
+</tr><tr>
+  <td><code>&amp;</code></td>
+  <td class="desc">Logical and</td>
+  <td><code>$a &amp; $b</code></td>
+</tr><tr>
+  <td><code>|</code></td>
+  <td class="desc">Logical or</td>
+  <td><code>$a | $b</code></td>
+</tr><tr>
+  <td><code>^</code></td>
+  <td class="desc">Exclusive or</td>
+  <td><code>$a ^ $b</code></td>
+</tr><tr>
+  <td><code>~</code></td>
+  <td class="desc">Logical not,<br>or one's complement</td>
+  <td><code>~$a</code></td>
+</tr><tr>
+  <td><code>&gt;&gt;</code></td>
+  <td class="desc">Shift bits to the right</td>
+  <td><code>$a &gt;&gt; $b</code></td>
+</tr><tr>
+  <td><code>&lt;&lt;</code></td>
+  <td class="desc">Shift bits to the left</td>
+  <td><code>$a &lt;&lt; $b</code></td>
+</tr></table>
+
+<h3 id="casting">Casting Operators</h3>
+<table cellspacing="0" summary="Lists PHP's casting operators."><tr>
+  <th>Operator</th>
+  <th>Purpose</th>
+  <th>Usage</th>
+</tr><tr>
+  <td><code>(int)<br>(integer)</code></td>
+  <td class="desc">Integer cast</td>
+  <td><code>(integer)$i</code></td>
+</tr><tr>
+  <td><code>(float)<br>(double)<br>(real)</code></td>
+  <td class="desc">Floating-point cast</td>
+  <td><code>(float)$f</code></td>
+</tr><tr>
+  <td><code>(string)</code></td>
+  <td class="desc">String cast</td>
+  <td><code>(string)$s</code></td>
+</tr><tr>
+  <td><code>(bool)<br>(boolean)</code></td>
+  <td class="desc">Boolean cast</td>
+  <td><code>(bool)$b</code></td>
+</tr><tr>
+  <td><code>(array)</code></td>
+  <td class="desc">Array cast</td>
+  <td><code>(array)$a</code></td>
+</tr><tr>
+  <td><code>(object)</code></td>
+  <td class="desc">Object cast</td>
+  <td><code>(object)$o</code></td>
+</tr></table>
+
+<h3 id="miscellaneous">Miscellaneous Operators</h3>
+<table cellspacing="0" summary="Lists PHP's miscellaneous operators."><tr>
+  <th>Operator</th>
+  <th>Purpose</th>
+  <th>Usage</th>
+</tr><tr>
+  <td><code>.</code></td>
+  <td class="desc">Concatenate</td>
+  <td><code>$a . $b</code></td>
+</tr><tr>
+  <td><code>$</code></td>
+  <td class="desc">Indirect Reference</td>
+  <td><code>$$a</code></td>
+</tr><tr>
+  <td><code>@</code></td>
+  <td class="desc">Silence (suppress error messages)</td>
+  <td><code>@($a/$b)</code></td>
+</tr><tr>
+  <td><code>? :</code></td>
+  <td class="desc">Ternary conditional expression</td>
+  <td><code>($a === TRUE) ? "true" : "false"</code></td>
+</tr><tr>
+  <td><code>{}</code></td>
+  <td class="desc">Embed variable in a string</td>
+  <td><code>a is {$a}</code></td>
+</tr><tr>
+  <td><code>` `</code></td>
+  <td class="desc">Execute shell command</td>
+  <td><code>`ll -A`</code></td>
+</tr><tr>
+  <td><code>=&gt;</code></td>
+  <td class="desc">Assign array index</td>
+  <td><code>array(0=&gt;'Sunday')</code></td>
+</tr><tr>
+  <td><code>-&gt;</code></td>
+  <td class="desc">Reference an object</td>
+  <td><code>$o-&gt;method()</code></td>
+</tr><tr>
+  <td><code>::</code></td>
+  <td class="desc">Reference a class</td>
+  <td><code>Widgets::method()</code></td>
+</tr><tr>
+<!-- Seems like a keyword to me. Is their a meaningful difference
+     between keywords and operators, or is it just their constitution? -->
+  <td><code>instanceof</code></td>
+  <td class="desc">Test if an object is an instance of a class</td>
+  <td><code>$w instanceof Widgets</code></td>
+</tr></table>
+
+<!--
+<hr><h2 id="statements">Control Statements</h2>
+
+-->
+<hr><h2 id="glossary">Glossary</h2><dl>
+
+<dt id="interpolate">Interpolate</dt>
+<dd><i>v.</i> to infer meaning, and alter information (perhaps
+erroneously).</dd>
+<dd>Commonly used within computer science as an antonym to "interpret"
+(read "interpret <em>literally</em>"). That is, a variable name or an
+escape sequence will be recognized and replaced by its associated value.
+The word "extrapolate" is actually more accurate, but rarely if ever
+used.</dd>
+
+<!--
+<dt></dt>
+<dd></dd>
+
+-->
+</dl><!-- End glossary -->
+
+<hr><p class="yada">This page uses valid
+<a href="http://validator.w3.org/check/referer">markup</a> and
+<a href="http://jigsaw.w3.org/css-validator/check/referer">stylesheets</a>.
+</p>
+
+</body>
+</html>

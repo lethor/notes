@@ -1,0 +1,1100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>CS 160A - Intro to Unix &amp; Linux</title>
+<meta name="author" content="Ben Thornton" />
+<link rel="stylesheet" type="text/css" href="../styles/print.css" media="print" />
+<style type="text/css"><!--
+
+@import url(../styles/style.css);
+@import url(../styles/notes.css);
+
+--></style>
+</head>
+
+<body id="cs160a">
+
+<div id="all">
+
+<h1>Introduction to Unix &amp; Linux</h1>
+
+<p>These are my notes for <a href="http://fog.ccsf.cc.ca.us/~gboyd/cs160a/Syllabus.html" title="Syllabus for CS 160A, Spring 2005, by Greg Boyd">CS 160A</a>.</p>
+
+<table id="timetable"><tr><td>
+
+<table class="month"><caption>January 2005</caption><tr>
+  <th><acronym title="Sunday">S</acronym></th>
+  <th><acronym title="Monday">M</acronym></th>
+  <th><acronym title="Tuesday">T</acronym></th>
+  <th><acronym title="Wednesday">W</acronym></th>
+  <th><acronym title="Thursday">R</acronym></th>
+  <th><acronym title="Friday">F</acronym></th>
+  <th><acronym title="Saturday">S</acronym></th>
+</tr><tr>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td>1</td>
+</tr><tr>
+  <td>2</td>
+  <td>3</td>
+  <td>4</td>
+  <td>5</td>
+  <td>6</td>
+  <td>7</td>
+  <td>8</td>
+</tr><tr>
+  <td>9</td>
+  <td>10</td>
+  <td>11</td>
+  <td>12</td>
+  <td>13</td>
+  <td>14</td>
+  <td>15</td>
+</tr><tr>
+  <td>16</td>
+  <td>17</td>
+  <td><a href="#jan18" title="stdin, stdout, Redirection, Pipes, cat &amp; man">18</a></td>
+  <td>19</td>
+  <td><a href="#jan20" title="The Unix Shell, plus several basic commands">20</a></td>
+  <td>21</td>
+  <td>22</td>
+</tr><tr>
+  <td>23</td>
+  <td>24</td>
+  <td><a href="#jan25" title="ls, Absolute &amp; Relative Paths, echo, touch, more &amp; less">25</a></td>
+  <td>26</td>
+  <td><a href="#jan27" title="Wildcards, (s)ftp &amp; scp">27</a></td>
+  <td>28</td>
+  <td>29</td>
+</tr><tr>
+  <td>30</td>
+  <td>31</td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+</tr></table>
+
+</td><td>
+
+<table class="month"><caption>February 2005</caption><tr>
+  <th><acronym title="Sunday">S</acronym></th>
+  <th><acronym title="Monday">M</acronym></th>
+  <th><acronym title="Tuesday">T</acronym></th>
+  <th><acronym title="Wednesday">W</acronym></th>
+  <th><acronym title="Thursday">R</acronym></th>
+  <th><acronym title="Friday">F</acronym></th>
+  <th><acronym title="Saturday">S</acronym></th>
+</tr><tr>
+  <td></td>
+  <td></td>
+  <td><a href="#feb01" title="find, Command Line Editing, history &amp; Shell Variables">1</a></td>
+  <td>2</td>
+  <td><a href="#feb03" title="Linux lab info">3</a></td>
+  <td>4</td>
+  <td>5</td>
+</tr><tr>
+  <td>6</td>
+  <td>7</td>
+  <td><a href="#feb08" title="Filesystem Commands: cp &amp; mv">8</a></td>
+  <td>9</td>
+  <td><a href="#feb10" title="Permissions">10</a></td>
+  <td>11</td>
+  <td>12</td>
+</tr><tr>
+  <td>13</td>
+  <td>14</td>
+  <td><a href="#feb15" title="umask, head, tail &amp; wc">15</a></td>
+  <td>16</td>
+  <td><a href="#feb17" title="nl, fold, quota, file &amp; grep">17</a></td>
+  <td>18</td>
+  <td>19</td>
+</tr><tr>
+  <td>20</td>
+  <td>21</td>
+  <td><a href="#feb22" title="Links">22</a></td>
+  <td>23</td>
+  <td>24</td>
+  <td>25</td>
+  <td>26</td>
+</tr><tr>
+  <td>27</td>
+  <td>28</td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+</tr></table>
+
+</td><td>
+
+<table class="month"><caption>March 2005</caption><tr>
+  <th><acronym title="Sunday">S</acronym></th>
+  <th><acronym title="Monday">M</acronym></th>
+  <th><acronym title="Tuesday">T</acronym></th>
+  <th><acronym title="Wednesday">W</acronym></th>
+  <th><acronym title="Thursday">R</acronym></th>
+  <th><acronym title="Friday">F</acronym></th>
+  <th><acronym title="Saturday">S</acronym></th>
+</tr><tr>
+  <td></td>
+  <td></td>
+  <td><a href="#mar01" title="Filters: cut, paste, sort, uniq &amp; tr">1</a></td>
+  <td>2</td>
+  <td>3</td>
+  <td>4</td>
+  <td>5</td>
+</tr><tr>
+  <td>6</td>
+  <td>7</td>
+  <td><a href="#mar08" title="Regular Expressions">8</a></td>
+  <td>9</td>
+  <td><a href="#mar10" title="sed &amp; make">10</a></td>
+  <td>11</td>
+  <td>12</td>
+</tr><tr>
+  <td>13</td>
+  <td>14</td>
+  <td>15</td>
+  <td>16</td>
+  <td>17</td>
+  <td>18</td>
+  <td>19</td>
+</tr><tr>
+  <td>20</td>
+  <td>21</td>
+  <td>22</td>
+  <td>23</td>
+  <td>24</td>
+  <td>25</td>
+  <td>26</td>
+</tr><tr>
+  <td>27</td>
+  <td>28</td>
+  <td>29</td>
+  <td>30</td>
+  <td>31</td>
+  <td></td>
+  <td></td>
+</tr></table>
+
+</td></tr></table>
+
+<h2 id="jan18">January 18<sup>th</sup>, 2005</h2>
+
+<h3 id="io">Input &amp; Output</h3>
+<p>Unix uses standard interfaces for input and output. These are called <dfn id="stdin"><code>stdin</code></dfn> and <dfn id="stdout"><code>stdout</code></dfn>. Generally, <code>stdin</code> refers to anything you type on your keyboard, and <code>stdout</code> refers to the text which programs display on your monitor. However, you can switch where programs send their output and take their input using <dfn>redirection</dfn>.</p>
+
+<h4 id="redirection">Redirection Operators</h4>
+<dl>
+  <dt><code>&lt;</code></dt>
+    <dd>Redirect <code>stdin</code></dd>
+  <dt><code>&gt;</code></dt>
+    <dd>Redirect <code>stdout</code></dd>
+  <dt><code>&gt;&gt;</code></dt>
+    <dd>Append <code>stdout</code></dd>
+  <dt><code>|</code></dt>
+    <dd>Pipe one command's <code>stdout</code> to the <code>stdin</code> of another</dd>
+</dl>
+
+<h3>Displaying Files</h3>
+<p>The <dfn id="cat"><code>cat</code></dfn> command copies input from a file to <code>stdout</code>; in other words, it displays it on your screen.</p> 
+
+<h4>Examples</h4>
+<blockquote><pre><code>cat file</code></pre></blockquote>
+<p>The above command displays the contents of <code>file</code> on the screen.</p>
+<blockquote><pre><code>cat &lt; file1 &gt; file2</code></pre></blockquote>
+<p>In this case, the <code>cat</code> command reads <code>file1</code> and writes its contents to <code>file2</code>.</p>
+<blockquote><pre><code>cat &lt; file1 &gt;&gt; file2</code></pre></blockquote>
+<p>Here, <code>cat</code> appends the contents of <code>file1</code> to the end of <code>file2</code>.</p>
+
+<h3 id="email">Using Electronic Mail</h3>
+<p><dfn id="pine"><code>pine</code></dfn> is a common email program on Unix. Just type <code>pine</code> on the command line and follow the instructions to compose and read email. <code>pine</code> employs the <dfn id="pico"><code>pico</code></dfn> <a href="../editors.html">text editor</a>, which is fairly simple to use.</p>
+
+<h4 id="forward">Forwarding Email</h4>
+<p>You can automatically forward messages from your Unix mail account by entering an email address in your <code>.forward</code> file. This is a hidden file which should live in your home directory. You may need to create it.</p>
+<p>To forward email <i>without saving any copies in your Unix account</i>, just enter the other email address like so:</p>
+<blockquote><pre><code>echo user@example.com &gt; ~/.forward</code></pre></blockquote>
+<p>To forward your mail and <i>save a copy of every message</i>, the file should read like this:</p>
+<blockquote><pre><code>\unix-user, user@example.com</code></pre></blockquote>
+<p>where <code>unix-user</code> is the name you use to log in to your Unix account. Only do this if you plan on keeping an eye on your Unix account. If your mailbox fills up, you will not be able to receive any new messages.</p>
+<p>Send an email to your Unix account to make sure it works. To stop forwarding your mail, simply remove the <code>.forward</code> file or name it something else (like <code>.forward-backup</code>).</p>
+
+<h3 id="help">Getting Help</h3>
+<p><dfn id="man"><code>man</code></dfn> is short for manual. Each command has a manual that describes what it does. To read about a command, type <code>man command</code> (where <code>command</code> is the name of the command you want to read about). Use your arrow keys to scroll through the <dfn>man pages</dfn>, or use your space bar to go through them one page at a time. Type the letter <kbd>q</kbd> to quit.</p>
+
+<h2 id="jan20">January 20<sup>th</sup>, 2005</h2>
+
+<p>Use either <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/">PuTTY</a> or <a href="http://www.ssh.com/support/downloads/secureshellwks/non-commercial.html"><acronym title="Secure Shell">SSH</acronym> for Worksations</a> to log on to HILLS from home.</p>
+
+<h3 id="shell">The Unix Shell</h3>
+<p>The <dfn>shell</dfn> is your interface to Unix. Shells are command interpreters. There are two shell families: sh and csh.</p>
+<p>Command format: <code>commandname arguments</code></p>
+<p>Options to a command begin with <code>-</code> (or <code>--</code>). Other arguments include filenames, redirection, pipes, and other stuff.</p>
+<p>When you run a command, Unix looks in certain directories for programs with that name. Your current directory is not always one of these (in Linux, for example). To specify the current directory, use <code title="dot slash">./</code>.</p>
+
+<h4>Example 1</h4>
+<blockquote><pre><code>ls -l file1</code></pre></blockquote>
+<p>In this case, the shell calls <code>ls</code>, and <code>ls</code> handles the arguments.</p>
+
+<h4>Example 2</h4>
+<blockquote><pre><code>ls -l file1 > file1.list</code></pre></blockquote>
+<ol>
+  <li>Shell breaks command apart</li>
+  <li>Looks for <a href="#ls"><code>ls</code></a></li>
+  <li>Opens <code>stdout</code> to <code>filelist</code></li>
+  <li>Starts ls and passes arguments</li>
+</ol>
+
+<h4>The Shell Loop</h4>
+<ol>
+  <li>Read command</li>
+  <li>Expand command</li>
+  <li>Execute command</li>
+  <li>Wait for command to complete</li>
+</ol>
+
+<h3>Things to Know About Unix</h3>
+<ul>
+  <li>Unix assumes you know what you're doing.</li>
+  <li>There's no trash can.</li>
+  <li>Everything is case-sensitive.</li>
+  <li>Extensions mean nothing.</li>
+  <li>Unix is not a word processor. Use <code>Enter</code> to break lines.</li>
+</ul>
+
+<h3 id="filenames">Filenames</h3>
+<p>You may use any character to name something, except a <span title="forward OR backward">slash</span>. However:</p>
+<p>It's a good idea to limit filenames to letters, numbers, underscores, dashes and periods. You should definitely avoid:</p>
+<ul>
+  <li>spaces in filenames</li>
+  <li>beginning filenames with a period</li>
+  <li>beginning filenames with a dash</li>
+</ul>
+
+<h4 id="special-characters">Special Characters</h4>
+<dl>
+  <dt><code>\</code> (backslash)</dt>
+    <dd>Escape characters (i.e. treat them literally even though they have special meaning)</dd>
+    <dd>Wrap long commands to the next line (in this case, you're just escaping the newline character)</dd>
+  <dt><code>/</code> (forward slash)</dt>
+    <dd>The "root" of the symbolic tree that we call the filesystem</dd>
+    <dd>The delimiter used between parent directories and their children when navigating the filesystem</dd>
+  <dt><code>.</code> (dot)</dt>
+    <dd>Often used as a generic delimiter</dd>
+    <dd>When at the beginning of a filename, it hides the file</dd>
+  <dt><code>-</code> (dash)</dt>
+    <dd>Used to specify options to commands</dd>
+  <dt><code>&nbsp;</code> (space)</dt>
+    <dd>Used to delimit command arguments</dd>
+</dl>
+
+
+<h3>Keyboard Shortcuts</h3>
+<dl>
+  <dt><kbd title="Control-C">^c</kbd></dt>
+    <dd>abort</dd>
+  <dt><kbd title="Control-D">^d</kbd></dt>
+    <dd><acronym title="End of File">EOF</acronym> or exit/logout (careful!)</dd>
+  <dt><kbd title="Control-S">^s</kbd>/<kbd title="Control-Q">^q</kbd></dt>
+    <dd>Suspend/resume output</dd>
+</dl>
+
+<h3>Basic Commands</h3>
+<dl>
+  <dt><code>cd</code></dt>
+   <dd>change directory</dd>
+  <dt><code>mkdir</code></dt>
+   <dd>make directory</dd>
+  <dt><code>pwd</code></dt>
+   <dd>print working directory</dd>
+  <dt><code>ls</code></dt>
+   <dd>list files and directories</dd>
+  <dt><code>rm</code></dt>
+   <dd>remove file</dd>
+  <dt><code>rmdir</code></dt>
+   <dd>remove directory (must be empty)</dd>
+  <dt><code>cat</code></dt>
+   <dd>copy files (or <code>stdin</code>) to <code>stdout</code></dd>
+  <dt><code>more</code></dt>
+   <dd>display file(s) one page at a time</dd>
+  <dt><code>script</code></dt>
+   <dd>record keystrokes in a file (and <code>stdout</code>, too)</dd>
+  <dt><code>date</code></dt>
+   <dd>show the date</dd>
+  <dt><code>id</code></dt>
+   <dd>display account info</dd>
+  <dt><code>#</code></dt>
+   <dd>comment out the rest of the line</dd>
+</dl>
+
+<h3>How to Print Assignments</h3>
+<ul>
+  <li>Remove backspaces and such by using <code>rmbs &lt; typescript &gt; asmt##.script</code></li>
+  <li>Insert pagebreaks using <code>pr</code></li>
+  <li>Use <code>lpstat</code> for printer statistics. Printers will be <code>iclpr1</code> or <code>2</code>.</li>
+</ul>
+
+<h3>The Unix Filesystem</h3>
+<ul>
+  <li>creating &amp; navigating directory structures</li>
+  <li><a href="#paths">paths (relative &amp; absolute)</a></li>
+  <li>directory trees &amp; recursive listings</li>
+  <li><a href="#find">find</a></li>
+  <li><a href="#wildcards">wildcards</a></li>
+  <li><a href="#links">links</a></li>
+  <li><a href="#permissions">permissions</a></li>
+  <li><a href="#symlink">internal filesystem representation</a></li>
+</ul>
+
+<h2 id="jan25">January 25<sup>th</sup>, 2005</h2>
+
+<h3 id="ls"><code>ls</code> Options</h3>
+<dl>
+  <dt><code>l</code></dt>
+    <dd>Long listing</dd>
+  <dt><code>R</code></dt>
+    <dd>Recursive listing</dd>
+  <dt><code>a</code></dt>
+    <dd>Show all (even <a href="#filenames">hidden files</a>)</dd>
+  <dt><code>A</code></dt>
+    <dd>Show everything, except <code title="current">.</code> and <code title="parent">..</code></dd>
+  <dt><code>F</code></dt>
+    <dd>indicate directories</dd>
+  <dt><code>C</code></dt>
+    <dd>display in columns</dd>
+  <dt><code>1</code></dt>
+    <dd>one entry per line</dd>
+  <dt><code>ld</code></dt>
+    <dd>show current directory info</dd>
+  <dt><code>i</code></dt>
+    <dd>show <a href="#inode">inode</a> numbers</dd>
+</dl>
+
+<h3 id="paths">Paths</h3>
+<dl>
+  <dt>absolute</dt>
+    <dd>starts with <code title="root">/</code> (or something that expands to <code title="root">/</code>)</dd>
+  <dt>relative</dt>
+    <dd>doesn't start with <code title="root">/</code></dd>
+</dl>
+<p>Special Case: <code title="home">~</code> (or <code>~me</code>) is an absolute path to your home directory.</p>
+
+<h3>Creating Files</h3>
+<dl>
+  <dt><dfn id="touch"><code>touch</code></dfn></dt>
+    <dd>update timestamp, or create file if it doesn't exist</dd>
+  <dt><dfn id="echo"><code>echo</code></dfn></dt>
+    <dd>write to <code>stdout</code></dd>
+  <dt><code>mkdir -p</code></dt>
+    <dd>create entire path</dd>
+</dl>
+<p><code>echo</code> is similar to <a href="#cat">cat</a>, although it's generally used to display strings (such as <a href="#variable">variable</a> contents) rather than files.</p>
+<p>When <code>echo</code> is used to create a file, it will be <acronym title="one byte">1B</acronym>, because it will contain a newline character. When <code>touch</code> is used, the file will contain <acronym title="zero bytes">0B</acronym>.</p>
+
+<h3>Pagers</h3>
+<p>&hellip;are commands that display stuff one screen at a time.</p>
+<dl>
+  <dt><dfn title="more"><code>more</code></dfn></dt>
+    <dd>display a file one page at a time</dd>
+  <dt><dfn title="less"><code>less</code></dfn></dt>
+    <dd>same as more, but lets you scroll up (less is more ;-)</dd>
+</dl>
+
+<h4>Pager Commands</h4>
+<dl>
+  <dt><kbd>Space</kbd></dt>
+    <dd>Page Down</dd>
+  <dt><kbd title="Control-B">^b</kbd></dt>
+    <dd>Page Up</dd>
+  <dt><kbd>Enter</kbd></dt>
+    <dd>Down one line</dd>
+  <dt><kbd title="Control-F">^f</kbd></dt>
+    <dd>Up one line</dd>
+  <dt><kbd>q</kbd></dt>
+    <dd>Quit</dd>
+  <dt><code>/term</code></dt>
+    <dd>Search forward for term</dd>
+  <dt><code>?term</code></dt>
+    <dd>Search backward for term</dd>
+</dl>
+<p>Use <code>/</code> or <code>?</code> by itself to search again.</p>
+
+<h3>A few more commands</h3>
+<dl>
+  <dt><code>cd -</code></dt>
+    <dd>Go to previous directory</dd>
+  <dt><code>find</code></dt>
+    <dd>search for files beneath the current directory<br />
+      (includes hidden files by default, but not <code title="current">.</code> and <code title="parent">..</code>)</dd>
+  <dt><code>lpstat -oiclpr1</code></dt>
+    <dd>Show output (<code>-o</code>) status for printer <code>iclpr1</code></dd>
+  <dt><code>rm -i</code></dt>
+    <dd>interactive remove (confirm delete)</dd>
+  <dt><code>rm -r</code></dt>
+    <dd>recursive remove (delete directories and all of their files, too)</dd>
+</dl>
+
+<h2 id="jan27">January 27<sup>th</sup>, 2005</h2>
+
+<h3 id="wildcards">Wildcards</h3>
+<p>Used to specify paths using a pattern, among other things. When the shell encounters a wildcard on the command line, it expands it (if possible) to a list of the paths that match. Consider the following tree:</p>
+<blockquote><pre>~
+|
+|- <b>file</b>
+|- dir
+   |
+   |- <b>file1</b>
+   |- <b>file2</b></pre></blockquote>
+
+<h4>Wildcard Operators</h4>
+<dl>
+  <dt><code>*</code></dt>
+    <dd>any number of characters (including zero)</dd>
+  <dt><code>?</code></dt>
+    <dd>any single character</dd>
+  <dt><code>[abc]</code></dt>
+    <dd>any of the listed characters (<code>a</code>, <code>b</code> or <code>c</code> - just one)</dd>
+  <dt><code>[a-c]</code></dt>
+    <dd>any character in the range (just one)</dd>
+  <dt><code>[!abc]</code></dt>
+    <dd>any single character except <code>a</code>, <code>b</code> or <code>c</code></dd>
+  <dt><code>{abc,xyz}</code></dt>
+    <dd>either <code>abc</code> or <code>xyz</code> (bash only)</dd>
+</dl>
+
+<h4>Caveats</h4>
+<p>Wildcards cannot match a leading period (won't include hidden files). Use <code>ls -d .*</code> to show hidden files (<code>-d</code> means don't expand directories; i.e. <code title="current">.</code> and <code title="parent">..</code>)<span title="This is just the period at the end of a sentence">.</span> <code>ls .*</code> will expand the current and parent directories. <code>ls [.]*</code> won't work because <code>[.]</code> is a wildcard and wildcards won't match a leading period.</p>
+<p>Sometimes <code title="star">*</code> cannot match zero characters (e.g. when it stands for a directory as in <code>ls */index.html</code>).</p>
+<p>Be careful with <code>[A-z]</code>, because there are a few <acronym title="American Standard Code for Information Interchange">ASCII</acronym> characters between <code title="Uppercase z">Z</code> and <code title="Lowercase a">a</code>. The following mnemonic device is helpful: nul = numbers, uppercase, lowercase.</p>
+<p>To quote literal characters, use brackets, single-quotes, or a leading backslash. However, <code>ls *[ ]*</code> won't work - instead use <code>ls *\ *</code> or <code>ls *' '*</code>.</p>
+
+<h3 id="ftp">Transferring Files</h3>
+<p>Use <code>ftp</code> of <code>sftp</code>. The latter is reccommended, since it encrypts your transmission.</p>
+<p>For example, type <code>sftp hills.ccsf.edu</code> to logon to HILLS.</p>
+
+<h4>Commands</h4>
+<dl>
+  <dt><code>lcd</code></dt>
+    <dd>Change local directory</dd>
+  <dt><code>![command]</code></dt>
+    <dd>Execute local command (does not work with <code>cd</code>)</dd>
+  <dt><code>[command]</code></dt>
+    <dd>execute remote command</dd>
+  <dt><code>get [file]</code></dt>
+    <dd>download [file]</dd>
+  <dt><code>put [file]</code></dt>
+    <dd>upload [file]</dd>
+  <dt><code>exit</code></dt>
+    <dd>quit (<code>bye</code> also works, but not on <code>sftp</code>)</dd>
+</dl>
+
+<h4><code title="scp">scp</code></h4>
+<p>To simply transfer a single file:<br />
+<code>scp user@host:path local-path</code> is the same as <code>get</code> on <code>ftp</code>.<br />
+<code>scp local-path user@host:path</code> is the same as <code>put</code>.<br />
+Get it? The format is <code>scp <i>from</i> <i>to</i></code>. Use <code>-r</code> for whole directories.</p>
+
+<h3>Using filters in <code>pine</code></h3>
+<p>Type <code>r</code> for rules, <code>a</code> for add, and <code>c</code> for change value.</p>
+
+<h2 id="feb01">February 1<sup>st</sup>, 2005</h2>
+
+<h3 id="find">Finding Files</h3>
+<ul>
+  <li>Use <code>find</code> to locate data with given attributes</li>
+  <li><code>find</code> is always recursive</li>
+  <li>Syntax: <code>find &lt;list of directories&gt; &lt;list of "predicates" (options)&gt;</code></li>
+</ul>
+
+<h4>Predicates</h4>
+<dl>
+  <dt><code>-name "pattern"</code></dt>
+    <dd>define a pattern to search for, based on <a href="#regexp">regular expressions</a></dd>
+  <dt><code>-type [fdl]</code></dt>
+    <dd>define a type of file to search for</dd>
+  <dt><code>f</code></dt>
+    <dd>files</dd>
+  <dt><code>d</code></dt>
+    <dd>directories</dd>
+  <dt><code>l (ell)</code></dt>
+    <dd>symbolic links</dd>
+</dl>
+
+<h3>Command Line Editing</h3>
+<p>Two syntaxes: <code>emacs</code> and <a href="../vi.html"><code>vi</code></a>. <code>emacs</code> is like pico, and is the default on bash. To set your command line editing syntax use <code>set -o vi</code> or <code>set -o emacs</code>.</p>
+<p>Emacs style uses the up and down arrow keys to cycle through the command history. <code>^a</code> takes you to the beginning of a line and <code>^e</code> takes you to the end. <code>Esc f</code> takes you to the next word.</p>
+
+<h4 id="history">Command History</h4>
+<ul>
+  <li>Display previously issued commands</li>
+  <li><code>![command number]</code> lets you use any stored command</li>
+  <li><code>!-n</code> - go back <code>n</code> commands</li>
+  <li><code>!!</code> &equiv; <code>!-1</code></li>
+  <li>To re-issue the last command after editing it, use <code>^old ^new</code> (where <code>^</code> is carat, not <code>Ctrl</code>). Works like find and replace.</li>
+  <li><code>!n:p</code> brings command <code>n</code> to the front of the line</li>
+  <li><code>$HISTSIZE</code> controls how many commands <code>history</code> remembers (e.g. <code>HISTSIZE=10</code> stores 10 commands in your history.</li>
+</ul>
+
+<h3 id="variables">Shell Variables</h3>
+<ul>
+  <li>Usually in uppercase</li>
+  <li>If <code>NAME</code> is a variable, <code>$NAME</code> is its value. Use <code>echo $NAME</code> to display.</li>
+  <li>To set <code>NAME</code>, type <code>NAME=[value]</code></li>
+</ul>
+
+<h4 id="envvar">Environment Variables</h4>
+<dl>
+  <dt><code>HOME</code></dt>
+    <dd>Path to your home directory</dd>
+  <dt><code>PWD</code></dt>
+    <dd>Path to your current directory</dd>
+  <dt><code>OLDPWD</code></dt>
+    <dd>Path to the last directory you were in</dd>
+  <dt><code>SHELL</code></dt>
+    <dd>Your preferred shell (e.g. bash)</dd>
+  <dt><code>LOGNAME</code></dt>
+    <dd>Your login/username</dd>
+  <dt><code>PATH</code></dt>
+    <dd>List of directories to use for commands</dd>
+  <dt><code>TERM</code></dt>
+    <dd>Your terminal type (e.g. vt100)<br />See <code>/usr/lib/terminfo</code> for recognized terms</dd>
+  <dt><code>HISTSIZE</code></dt>
+    <dd>Number of recent commands to store in <a href="#history">history</a></dd>
+</dl>
+
+<h4 id="shvar">Shell Variables</h4>
+<dl>
+  <dt><code>$_</code></dt>
+    <dd></dd>
+  <dt><code></code></dt>
+    <dd></dd>
+  <dt><code></code></dt>
+    <dd></dd>
+  <dt><code></code></dt>
+    <dd></dd>
+</dl>
+
+<h4 id="cmdvar">Commands Related to Variables</h4>
+<dl>
+  <dt><code>set</code></dt>
+    <dd>Show all variables</dd>
+  <dt><code>stty erase</code></dt>
+    <dd>sets how you erase characters
+      <dl>
+        <dt><kbd title="Control-?">^?</kbd></dt>
+          <dd>delete (used in Linux)</dd>
+        <dt><kbd title="Control-H">^h</kbd></dt>
+          <dd>backspace (used in HP-UX)</dd>
+      </dl>
+    </dd>
+</dl>
+
+<p><code>PATH</code> is a colon delimited list of directories. To add the current directory to <code>PATH</code>, type <code>PATH=$PATH:.</code>. Careful! If you don't include <code>$PATH</code>, you could lose your list for good.</p>
+
+<h2 id="feb03">February 3<sup>rd</sup>, 2005</h2>
+
+<p>Today's class is in the Linux lab (Bunglaow 305). It's open TR 3:30-7, and MW 12-1 &amp; 2:30-4:30. Accounts and home directories are on Springfield. These are NIS (or YP) accounts over <acronym title="Network File System">NFS</acronym>. Username and password are the same format as on HILLS. To change your password use <code>yppasswd</code>.</p>
+
+<h2 id="feb08">February 8<sup>th</sup>, 2005</h2>
+
+<h3 id="filesystem">Filesystem Commands</h3>
+<ul>
+  <li>do not read from <code>stdin</code> (e.g. <code>ls|rm</code> will not work)</li>
+  <li>you can't replace a directory with a file and vice versa</li>
+</ul>
+
+<h3 id="cp">Copying Files</h3>
+<p><code>cp</code> has 3 forms:</p>
+<dl>
+  <dt><code>cp file1 file2</code></dt>
+    <dd>copy <code>file1</code> to <code>file2</code></dd>
+  <dt><code>cp file1 file2 &hellip; file<i>n</i> dir</code></dt>
+    <dd>copy all the files into the directory</dd>
+  <dt><code>cp -r &lt;files &amp; dirs&gt; dir</code></dt>
+    <dd>copy "branches", <acronym title="also known as">aka</acronym> <dfn>recursive copy</dfn></dd>
+</dl>
+    
+<h4>Copying Folders</h4>    
+<p>Recursive copy has different cases. Consider <code>cp -r dir1 dir2</code></p>
+<dl>
+  <dt><code>dir2</code> exists but <code>dir2/dir1</code> doesn't</dt>
+    <dd>copy <code>dir1</code> (and it contents) and put it in <code>dir2</code></dd>
+  <dt><code>dir2</code> doesn't exist</dt>
+    <dd>copy <code>dir1</code> (and its contents) and name the copy <code>dir2</code></dd>
+  <dt><code>dir2</code> exists and so does <code>dir2/dir1</code></dt>
+    <dd>won't replace <code>dir2/dir1</code>, but copy contents into it (perhaps overwriting files! (but not directories))</dd>
+</dl>
+
+<h3 id="mv">Moving &amp; Renaming Files</h3>
+<dl>
+  <dt><code>mv file1 file2</code></dt>
+    <dd>rename file1 file2</dd>
+  <dt><code>mv &lt;files &amp; dirs&gt; dir</code></dt>
+    <dd>move <code>&lt;files &amp; dirs&gt;</code> into the directory <code>dir</code><br /><b>Special Case:</b> can't move a directory over an existing directory unless the existing directory is empty.</dd>
+</dl>
+
+<p>To print from <code>pine</code>:</p>
+<dl>
+  <dt><code>%</code></dt>
+    <dd>to print</dd>
+  <dt><code>c</code></dt>
+    <dd>custom</dd>
+  <dt><code>lp -diclpr3</code></dt>
+    <dd>destination (<code>-d</code>) is the linux lab (<code>iclpr3</code>)</dd>
+</dl>
+
+<h3 id="permissions">Permissions</h3>
+<p>Unix divides the world into 3 categories with respect to you:</p>
+<ol>
+  <li>You (the <b>u</b>ser)</li>
+  <li>Members of <b>g</b>roups</li>
+  <li>Everyone else (<b>o</b>ther)</li>
+</ol>
+<p>Each piece of data on Unix has one set of permissions for each category. Each set has these possible permissions:</p>
+<ul>
+  <li><b>r</b>ead</li>
+  <li><b>w</b>rite</li>
+  <li>e<b>x</b>ecute</li>
+</ul>
+
+<h2 id="feb10">February 10<sup>th</sup>, 2005</h2>
+<p>Today we continue with <a href="#permissions">permissions</a>.</p>
+
+<h4>Groups</h4>
+<ul>
+  <li>All users are organized into groups</li>
+  <li>Historically each user only belonged to one group</li>
+  <li>Today users may belong to several groups - one of them being the default</li>
+  <li>Each piece of data has exactly one owner and belongs to exactly one group</li>
+  <li>Your permission to access a piece of data depends on who you are with respect to the data:
+    <ul>
+      <li>If you are the owner, the <code>u</code> (as in <b>u</b>ser) permissions apply</li>
+      <li>If you are not the owner, but a member of the data's <b>g</b>roup, then <code>g</code> permissions apply</li>
+      <li>If you are neither the owner nor a member of the data's group, <code>o</code> (as in <b>o</b>ther) permissions apply</li>
+    </ul>
+  </li>
+</ul>
+
+<h4>Directory Permissions</h4>
+<p>A directory is a table with two columns: one for names and one for numbers. The names are the names of the files (and subdirectories) inside the directory. The numbers are <code>inode</code> numbers. <dfn id="inode"><code>inode numbers</code></dfn> are the unique numbers that Unix assigns to each file. With regard to permissions:</p>
+<ul>
+  <li>Any access to info about a file requires access to the files inside</li>
+  <li>To access the inodes of a directory, you must have <code title="execute">x</code> permission</li>
+  <li><code title="read">r</code> allows you to list the entries in the directory</li>
+  <li><code title="write">w</code> allows you to manipulate the table (i.e. add, edit and delete entries</li>
+  <li>You can view the contents of a directory with only <code title="read">r</code> permission, but you can't see a detailed listing (<code>ls -l</code>)</li>
+  <li>You can remove entries (files) in a directory with <code title="write">w</code> and <code title="execute">x</code> permissions to the directory, yet <i>you do not need any permissions to the file</i>.</li>
+</ul>
+<p class="related">See also: <a href="#inode-table">inode table</a></p>
+
+<h4>Changing Permissions</h4>
+<p><i>Only</i> the owner of a piece of data can change its permissions, owner or group. Make sure you change the owner last (duh). To change the owner, use <dfn id="chown"><code>chown new-owner &lt;list of files &amp; dirs&gt;</code></dfn>. You should never <code>chown</code> a directory. To change the group, use <dfn id="chgrp"><code>chgrp new-owner &lt;list of files &amp; dirs&gt;</code></dfn>. When you use <code>chown</code> or <code>chgrp</code>, you can use either names or ID numbers (<code title="User ID">uid</code> or <code title="Group ID">gid</code>) to specify the new group/owner.</p>
+<p>To change the permissions, use <code>chmod permissions &lt;list of files &amp; dirs&gt;</code> where <code>permissions</code> is either a relative or absolute expression.</p>
+
+<h4>Relative Permission Codes</h4>
+<p>Relative permissions work like this: <code>&lt;classes&gt;operator&lt;permissions&gt;</code> where a class can either be <code title="user">u</code>, <code title="group">g</code> or <code title="other">o</code>; <code>operator</code> can be <code title="add">+</code>, <code title="delete">-</code> or <code title="set exactly">=</code>; and permissions can be either <code title="read">r</code>, <code title="write">w</code> or <code title="execute">x</code>.</p>
+<p>For example <code>chmod u+x file1</code> grants you (the owner) execute permission.</p>
+<p>You can string operations together as well: <code>chmod g=rx,o=r file1</code> grants read and execute permissions to <code>file1</code>'s group, and read permission to everyone else. No more, no less.</p>
+
+<h4>Absolute Permission Codes</h4>
+<p>You may also specify permissions using octal notation. This is effectively the same as using the <code title="set exactly">=</code> operator with the allowed permissions, but it saves typing.</p>
+<table><tr>
+  <th>Permissions</th>
+  <th>Octal</th>
+</tr><tr>
+  <td><code>---</code></td>
+  <td>0</td>
+</tr><tr>
+  <td><code>--x</code></td>
+  <td>1</td>
+</tr><tr>
+  <td><code>-w-</code></td>
+  <td>2</td>
+</tr><tr>
+  <td><code>-wx</code></td>
+  <td>3</td>
+</tr><tr>
+  <td><code>r--</code></td>
+  <td>4</td>
+</tr><tr>
+  <td><code>r-x</code></td>
+  <td>5</td>
+</tr><tr>
+  <td><code>rw-</code></td>
+  <td>6</td>
+</tr><tr>
+  <td><code>rwx</code></td>
+  <td>7</td>
+</tr></table>
+<p><span style="font-variant:small-caps">Example</span>: <code>chmod 754 file1</code> sets the permissions to <code>-rwxr-xr--</code> (the first <code>-</code> means this is a file; a directory would have a <code>d</code> here instead).</p>
+
+<h4>History</h4>
+<p>Regarding permissions, <acronym title="System Five">SysV</acronym> tends to be more permissive whereas <acronym title="Berkeley Software Distribution">BSD</acronym> tends to be more restrictive. In this respect HP-UX follows SysV and Linux follows BSD. As such, on Linux only root can use <code>chown</code>.</p>
+
+<h2 id="feb15">February 15<sup>th</sup>, 2005</h2>
+
+<p>Permissions of a file are set when a file is created. Once created, you can only change its permissions using <code>chmod</code>. When creating a file, permissions are determined by:</p>
+<ul>
+  <li>the default permissions, which are
+    <ul>
+      <li>the system default (<code>666</code> for files, <code>777</code> for directories), <b>or</b></li>
+      <li>the permissions of the original, if copying</li>
+    </ul>
+  </li>
+  <li>after which your <code>umask</code> is applied.</li>
+</ul>
+
+<h4 id="umask"><code>umask</code></h4>
+<p>Any bit set in <code>umask</code> <i>denies</i> the corresponding permission in the result. The value for <code>umask</code> is usually <code>077</code>. The same <code>umask</code> applies to both files and directories (it can only have one value). Each user has their own <code>umask</code>.</p>
+<p><code>umask</code> does not behave like a file or a variable. The best way to think about it is as a global variable.</p>
+<p>To see your <code>umask</code> value, simply type <code>umask</code>. To set <code>umask</code>, simply type <code>umask</code> followed by the appropriate octal value.</p>
+<p>Octal values, like decimals, do not require a leading zero in these situations. However, when displayed out of context octal numbers are usually distinguished from decimals with a leading zero. Hexadecimal values usually begin with <code>0x</code>.</p>
+
+<h3>Simple Tools</h3>
+<dl>
+  <dt id="head"><code>head -nN file(s)</code></dt>
+    <dd>output first <code>N</code> lines of each file</dd>
+  <dt id="tail"><code>tail -nN file(s)</code></dt>
+    <dd>output last <code>N</code> lines of each file</dd>
+  <dt><code>tail -n+N file(s)</code></dt>
+    <dd>output the rest of the file starting at line <code>N</code></dd>
+  <dt id="wc"><code>wc -l -w -c</code></dt>
+    <dd>count the number of lines, words or characters</dd>
+</dl>
+
+<h4>Examples</h4>
+<dl>
+  <dt><code>find . -type f | wc -l</code></dt>
+    <dd>tell me the number of files in the current directory</dd>
+  <dt><code>cat file1 | wc</code></dt>
+    <dd>tell me the number of lines, words and characters, but not the name of the file</dd>
+  <dt><code>cat -n file1 | head -n20 | tail -n11</code></dt>
+    <dd>display lines 10 through 20 of <code>file1</code></dd>
+</dl>
+
+<h2 id="feb17">February 17<sup>th</sup>, 2005</h2>
+
+<p>Wednesday, March 9<sup>th</sup> from 6-7pm: "Linux Clustering for Supercomputing and <acronym title="Massively Multiplayer Online Games">MMOGs</acronym>" in R301.</p>
+
+<h4>More Simple Tools</h4>
+<dl>
+  <dt><dfn id="nl"><code>nl [-ba]</code></dfn></dt>
+    <dd>same as <code>cat -n</code>, however <code>nl</code> by itself doesn't number blank lines</dd>
+  <dt><dfn id="fold"><code>fold [-wN] [-s]</code></dfn></dt>
+    <dd>break up long lines [fold at <code>N</code> columns] [fold a nearest space]</dd>
+  <dt><dfn id="quota"><code>quota -r</code></dfn></dt>
+    <dd>info about your storage quota</dd>
+  <dt><dfn id="file"><code>file</code></dfn></dt>
+    <dd>analyze a file's contents</dd>
+  <dt><dfn id="grep"><code>grep 'pattern' file(s)</code></dfn></dt>
+    <dd>output lines that contain <code>pattern</code>
+      <ul>
+        <li><code>-i</code>: ignore case</li>
+        <li><code>-v</code>: output lines that don't contain <code>pattern</code></li>
+      </ul>
+    <span class="related">see also: <a href="#grep-regexp">using regular expressions with <code>grep</code></a></span></dd>
+  <dt><dfn><code>sort [-n] [-r]</code></dfn></dt>
+    <dd>sorts lines alphabetically [numerically] [in reverse]</dd>
+</dl>
+
+<p>Certain options take arguments (e.g. <code>fold -wN</code>, <code>head -nN</code>). Best practice dictates:</p>
+<ul>
+  <li>you should put a space between the option and the argument (<code>fold -w 40</code>)</li>
+  <li>you shouldn't string other options together (<code>fold -w 40 -s</code> not <code>fold -sw 40</code>).</li>
+</ul>
+<p>In the examples given, the command would work just fine, but they're bad habits to get into.</p>
+
+<p><a href="#variables">Remember</a>, <code>$_</code> stores the last word of last command. This can be helpful.</p>
+
+<h3 id="links">Links</h3>
+<p><dfn>Hard link</dfn>s create a second name for a file. Ordinary users can only create hard links to files, not directories. The syntax for creating hard links is: <dfn id="ln"><code>ln existing-file new-name</code></dfn>.</p>
+<p><a href="#ls"><code>ls -i</code></a> shows you each file's <a href="#inode">inode number</a>. This is helpful, because links have the same inode as the original data.</p>
+<p>Files and directories don't actually have names; the <i>links</i> have names.</p>
+
+<h2 id="feb22">February 22<sup>nd</sup>, 2005</h2>
+
+<p>Info about the piece of data is divided into three parts:</p>
+<ol>
+  <li>the data itself</li>
+  <li>info about the data (size, date, permissions, etc.); i.e. <dfn>metadata</dfn></li>
+  <li>the name(s) associated with the data</li>
+</ol>
+<p>Filenames are associated with their data using an index into the master info table (the <dfn id="inode-table">inode table</dfn>). The inode table contains the following fields: type, number of links, permissions, owner, group, dates, block numbers. <code>mv</code>, <code>rm</code> and <code>ln</code> simply alter info in the tables we call directories.</p>
+
+<h4 id="symlink">Symbolic Links</h4>
+<p>A <dfn>symbolic link</dfn> (or <dfn>soft link</dfn>) is a substitute path. It acts like a small file that contains a path. When the file is referenced, the path is interpreted relative to the directory the symlink is in. There are a few differences from hard links:</p>
+<ol>
+  <li>You can make a symlink to anything.</li>
+  <li>When you create a symlink, there's no guarantee it works. You must test it!</li>
+</ol>
+<p><code>ln -s file symlink</code> creates a new piece of data that acts as if it contains the path to <code>file</code>.</p>
+<p>So, if symlinks are so easy to break, why are they so popular?</p>
+<p>The hierarchical file system that we think of as one large symbolic tree, may actually span multiple physical devices. Each device has its own inode table. When you <code>mv</code> a piece of data across physical devices, the system actually copies it to the new device, perhaps changes the permissions, and deletes the original. For better or for worse, it does all of this transparently. If you try to create a hard link across physical devices, you will get an error.</p>
+<p>The reason symlinks are so popular is because we often don't know where the physical boundaries lie.</p>
+<p>When working with symbolic links, all actions (save two) operate on the 'real' data object. The exceptions are <code>mv</code> and <code>rm</code>.</p>
+<p><code>ls -l</code> will show where symbolic links point. <code>ls -lL</code> shows originals instead of symlinks.</p>
+<p>You can create symlinks with absolute paths to make them more resilient.</p>
+<p>By the way, <code>df</code> is the command to display filesystems.</p>
+
+<h2 id="mar01">March 1<sup>st</sup>, 2005</h2>
+
+<h3><code id="cut">cut</code> &amp; <code id="paste">paste</code></h3>
+<dl>
+  <dt><code>cut -c&lt;column list&gt; file1</code></dt>
+    <dd>cut columns in <code>&lt;column list&gt;</code> from <code>file1</code></dd>
+  <dt><code>cut -f&lt;field list&gt; file1</code></dt>
+    <dd>cut fields in <code>&lt;field list&gt;</code> from <code>file1</code></dd>
+  <dt><code>paste [-d'x'] file1 file2 &hellip;</code></dt>
+    <dd>paste files together columnwise (can use <code>-</code> in place of a filename for <code>stdin</code></dd>
+</dl>
+<p>Note: <code>paste file1 file2 > file1</code> is a no-no. This will cause the shell to redirect first, overwriting <code>file1</code>, <i>then</i> paste will execute.</p>
+<p>By the way:</p>
+<ul>
+  <li>In bash, type <kbd title="Control-V">^v</kbd> then <kbd>Tab</kbd> to use <code>Tab</code> as the delimiter.</li>
+  <li><code>groups</code> shows which groups I'm part of.</li>
+  <li><code>newgrp</code> temporarily changes my default group.</li>
+</ul>
+
+<h3 id="sort">sort</h3>
+<p>Sort the contents of a file.</p>
+
+<table><tr>
+  <th>Options</th>
+  <th>Short for</th>
+  <th>Comments</th>
+</tr><tr>
+  <td><code>f</code></td>
+  <td>Fold case (ignore)</td>
+  <td></td>
+</tr><tr>
+  <td><code>t'x'</code></td>
+  <td>Tab (delimit)</td>
+  <td>Where <code>x</code> is a delimiter (default is whitespace)</td>
+</tr><tr>
+  <td><code>o&lt;outfile&gt;</code></td>
+  <td>outfile</td>
+  <td>Sort in place (output result to <code>&lt;outfile&gt;</code>)</td>
+</tr><tr>
+  <td><code>u</code></td>
+  <td>unique</td>
+  <td>Remove records with duplicate keys</td>
+</tr><tr>
+  <td><code>n</code></td>
+  <td>Numeric</td>
+  <td>Sort numerically (default is alphabetically)</td>
+</tr><tr>
+  <td><code>r</code></td>
+  <td>Reverse</td>
+  <td>Sort in reverse order</td>
+</tr></table>
+
+<h4>Sort Keys</h4>
+<dl>
+  <dt><code>k&lt;fieldspec&gt;</code></dt>
+    <dd><ul>
+      <li>where <code>&lt;fieldspec&gt;</code> follows the form <code>start[,end]</code></li>
+      <li>count fields left to right, starting at one</li>
+      <li>sort from the beginning of <code>start</code> to the end of <code>end</code></li>
+      <li>if <code>end</code> is missing, go to the end of the record</li>
+    </ul></dd>
+  <dt><code>k1,1</code></dt>
+    <dd>sort on field 1 only</dd>
+  <dt><code>k1,3</code></dt>
+    <dd>sort on field 1, then 2, then 3</dd>
+</dl>
+<ul>
+  <li>You can specify column and field positions in the format <code>f.c</code>.</li>
+  <li>Field modifiers <code title="numeric">n</code> and <code title="reverse">r</code> are attached to the key.</li>
+  <li>Don't forget to specify the delimiter.</li>
+</ul>
+
+<h4>Examples</h4>
+<dl>
+  <dt><code>sort -k1,1n file1</code></dt>
+    <dd>Sort on first columns numerically.</dd>
+  <dt><code>sort -k1,1r -k2,2n file2</code></dt>
+    <dd>Sort on 1<sup>st</sup> column in reverse, then the 2<sup>nd</sup> column numerically.</dd>
+  <dt><code>sort -k1.2,1n file3</code></dt>
+    <dd>Key start is column #2 of field #1, end is the end of field #1. Sort numerically.</dd>
+</dl>
+<p>Note: <code>sort -n</code> only sorts as long as there are numbers, so oftentimes you won't need to specify the key end when sorting numerically.</p>
+
+<h3 id="uniq"><code>uniq</code></h3>
+<p>The <code>uniq</code> command removes <i>consecutive</i> identical lines. <code>sort file | uniq</code> is an alternative to <code>sort -u file</code>. However, if you're sorting by key, <code>uniq</code> will only remove identical lines, not all of them with identical keys.</p>
+
+<h3 id="tr"><code>tr</code></h3>
+<p><code>tr</code> translates characters. <code>tr</code> is a "pure filter"; i.e. it only accepts <code>stdin</code>, no file arguments. <code>tr</code> has 3 modes:</p>
+<ol>
+  <li>Replace mode - replace one character for another<dl>
+      <dt><code>tr '#' ':'</code></dt>
+        <dd>Change all crosshatches to colons.</dd>
+      <dt><code>tr 'abc' 'ABC'</code></dt>
+        <dd>Change each a to A, b to B, and c to C.</dd>
+      <dt><code>tr '[a-z]' '[A-Z]'</code></dt>
+        <dd>Change all lowercase <acronym title="American Standard Code for Information Interchange">ASCII</acronym> characters to uppercase.</dd>
+      <dt><code>tr '[[:lower:]]' '[[:upper:]]'</code></dt>
+        <dd>Same as above, but this one works for all character sets.</dd>
+    </dl></li>
+  <li>Delete mode - delete characters<dl>
+      <dt><code>tr -d 'string'</code></dt>
+        <dd>Delete any character in <code>string</code> from input and send result to <code>stdout</code>.</dd>
+    </dl></li>
+  <li>Squeeze mode - squeeze adjacent redundant characters<dl>
+      <dt><code>tr -s ' '</code></dt>
+        <dd>Replace all sequences of multiple spaces with a single space.</dd>
+    </dl></li>
+</ol>
+
+<h2 id="mar08">March 8<sup>th</sup>, 2005</h2>
+
+<h3 id="regexp">Basic Regular Expressions</h3>
+<p>A <dfn>regular expression</dfn> is a sequence of characters that represents a more general pattern, like words or telephone numbers. A regular expression will match as much as it possibly can, so it's important to be precise.</p>
+<dl>
+  <dt><code>^?</code></dt>
+    <dd>Anchors</dd>
+  <dt><code>.</code></dt>
+    <dd>Any single character</dd>
+  <dt><code>[xyz]</code></dt>
+    <dd><dfn>Character set</dfn> - match any one of x, y or z</dd>
+  <dt><code>[^xyz]</code></dt>
+    <dd>Anything <i>but</i> x, y or z</dd>
+  <dt><code>[x-z]</code></dt>
+    <dd>Range - same as <code>[xyz]</code> in this case</dd>
+  <dt><code>[:class:]</code></dt>
+    <dd><dfn>Character class</dfn> - where <code>class</code> can be <code>alpha</code>, <code>upper</code>, <code>lower</code>, <code>digit</code>, <code>punct</code>, <code>space</code> or <code>blank</code>. A character class must fall within a set, so they're often written <code>[[:alpha:]]</code>, although <code>[[:alpha:][:digit:]]</code> or even <code>[[:digit:]abc]</code> is perfectly acceptable.</dd>
+</dl>
+
+<h4 id="grep-regexp">Using regular expressions with <code>grep</code></h4>
+<dl>
+  <dt><code>grep -e '[abc]' -e '[123]'</code> &hellip;</dt>
+    <dd>Matches any one of the regular expressions</dd>
+  <dt><code>grep -f patterns file1</code></dt>
+    <dd>We can list as many regexps as we like in a file (in this case <code>patterns</code>), one on each line</dd>
+</dl>
+
+<h3>Extended Regular Expressions</h3>
+<p>To allow extended regexps with <code>grep</code>, use the <code>-E</code> switch.</p>
+<table><tr>
+  <th>Operator</th>
+  <th>Matches</th>
+</tr><tr>
+  <td><code>+</code></td>
+  <td>One or more of preceding regexp (<code>[a-z][a-z]*</code> &equiv; <code>[a-z]+</code>)</td>
+</tr><tr>
+  <td><code>?</code></td>
+  <td>Zero or one of preceding regexp</td>
+</tr><tr>
+  <td><code>{x,y}</code></td>
+  <td>At least x, but not more than y of preceding regexp</td>
+</tr><tr>
+  <td><code>( )</code></td>
+  <td>Create a new regular expression</td>
+</tr><tr>
+  <td><code>|</code></td>
+  <td>OR</td>
+</tr></table>
+
+<h4>Examples</h4>
+<dl>
+  <dt><code>[a-z]{4}</code></dt>
+    <dd>Matches exactly four lowercase letters</dd>
+  <dt><code>[a-z]{4,}</code></dt>
+    <dd>Matches four or more lowercase letters</dd>
+  <dt><code>[a-z]{,4}</code></dt>
+    <dd>Matches no more than four consecutive minuscules</dd>
+  <dt><code>[a-z]{4,6}</code></dt>
+    <dd>Matches at lease four, but no more than six lowercase letters</dd>
+</dl>
+<p>It's helpful to "restrict" our regular expressions by specifying how they begin and end. Remember: it's easy to match what we want, but it's difficult to <i>not</i> match what we don't. To deal with long lines that contain multiple similar patterns, build from one end to the other.</p>
+<p>For long, complex regular expressions it can be helpful to check matching brackets/parentheses in <a href="../vi.html"><code>vi</code></a> using the <code>%</code> command. <code>echo !! > file</code> will store the last command in <code>file</code>.</p>
+
+<h2 id="mar10">March 10<sup>th</sup>, 2005</h2>
+
+<h3 id="sed"><code>sed</code></h3>
+<p><dfn><code>sed</code></dfn> is short for "stream-oriented editor". It is based on the <code>ed</code> editor. <a href="../vi.html"><code>vi</code></a> is also based on <code>ed</code>.</p>
+<p><code>sed</code> copies <code>stdin</code> to <code>stdout</code>, performing one or more editing commands on each line on the fly. <code>sed</code> can mimic many of the commands that we've already learned. In some cases, <code>sed</code> allows us more flexibility. In others, it is easier to use the simpler commands.</p>
+<p>The syntax for <code>sed</code> is:</p>
+<blockquote><pre><code>sed [options] '[address1[,address2]]function' [flags]</code></pre></blockquote>
+<p>The confusing part of the command, after the options, is called the <dfn>editing command</dfn>.</p>
+
+<h4>Options</h4>
+<dl>
+  <dt><code>n</code></dt>
+    <dd>no output unless I say so</dd>
+  <dt><code>e</code></dt>
+    <dd>used to specify multiple editing commands (like <a href="#grep-regexp"><code>grep -e</code></a>)</dd>
+</dl>
+
+<h4>Functions</h4>
+<dl>
+  <dt><code>d</code></dt>
+    <dd>Delete</dd>
+  <dt><code>p</code></dt>
+    <dd>Print</dd>
+</dl>
+
+<h4>Examples</h4>
+<dl>
+  <dt><code>sed '' &lt; file</code></dt>
+    <dd>Same as <code>cat file</code></dd>
+  <dt><code>sed 'd' &lt; file</code></dt>
+    <dd>Delete each line</dd>
+  <dt><code>sed 'p' &lt; file</code></dt>
+    <dd>Print each line twice</dd>
+  <dt><code>sed -n 'p' &lt; file</code></dt>
+    <dd>Same as <code>sed '' &lt; file</code> (which is the same as <code>cat file</code>)</dd>
+  <dt><code>sed '1,5d' &lt; file</code></dt>
+    <dd>Delete lines one through five</dd>
+  <dt><code>sed -e '1d' -e '5d' &lt; file</code></dt>
+    <dd>Delete just lines one and five</dd>
+  <dt><code>sed -n '1,5p' &lt; file</code></dt>
+    <dd>Print lines one through five</dd>
+  <dt><code>sed '/Joe/d' &lt; file</code></dt>
+    <dd>Delete all lines that contain the string <code>Joe</code> (same as <a href="#grep"><code>grep -v</code></a>)</dd>
+  <dt><code>sed -n '/Joe/p' &lt; file</code></dt>
+    <dd>Print all lines that contain the string <code>Joe</code></dd>
+</dl>
+<p>As you can see from the last couple of examples, <code>sed</code> can match patterns. You can use <a href="#regexp">basic regular expressions</a> as well as literal strings, surrounded by delimiters to match many different patterns. The most commonly used delimiter is <code title="forward slash">/</code> but you can use any delimiter you like so long as you are consistent.</p>
+
+<h4>Subsitution</h4>
+<p><code>sed</code>'s substitution function uses the following syntax: <code>s/pattern/new-string/</code>. This will change the <i>first occurrence</i> of <code>pattern</code> to <code>new-string</code>. The <code>g</code> flag will substitute all occurrences (just like <a href="#tr"><code>tr</code></a>).</p>
+
+<h4>Capturing Pieces of the Matched Pattern</h4>
+<p>If part of your pattern is enclosed by <a href="#special-characters">escaped</a> parentheses, the piece matched is saved in a numbered register and can be replayed in the substitution. For example:</p>
+<blockquote><pre><code>sed 's/\([A-Z]\).*/The first letter was \1/' &lt; file</code></pre></blockquote>
+<p>The first pattern matches the whole line (because <code title="dot star">.*</code> is greedy - it will match as much as it possibly can), then <code>sed</code> subsitutes it with the replacement text.</p>
+<p>In this case the replacement text is <code>The first letter was \1</code>, and the <code>\1</code> gets replaced by the first letter.</p>
+<p>"Why the first letter?" you ask. Well, because <code>\([A-Z]\)</code> matches the first letter. The <code>\(</code> and <code>\)</code> are the escape sequences for the parentheses. Normally, we escape characters to change operators into literal characters. In this case we're escaping literal characters to make them operators. Confusing? A little. Ugly? Most certainly.</p>
+
+<h3 id="make"><code>make</code></h3>
+<p><code>make</code> manages software projects. Rules tell it what to do. Each rule has a target, a set of commands to 'make' the target, and possibly dependencies. Consider the file <code>hello.c</code>:</p>
+<blockquote><pre><code>main() {
+	printf("Hello\n");
+}</code></pre></blockquote>
+<p><code>cc -o hello hello.c</code> compiles the program, but we don't want to have to type this every time. The things you would have to type can become extraordinarily cumbersome for large programs. Instead we can create a <dfn id="makefile">makefile</dfn>:</p>
+<blockquote><pre><code>hello:
+	cc -o hello hello.c</code></pre></blockquote>
+<p>To check for dependencies (like the file <code>hello.c</code>), we can modify the makefile like so:</p>
+<blockquote><pre><code>hello: hello.c
+	cc -o hello hello.c</code></pre></blockquote>
+<p>Typing <code>make hello</code> will automatically compile the program with whatever command line arguments you've specified in the makefile. In this case, we don't even need a makefile because <code>make</code> includes some basic rules for common situations.</p>
+
+<hr />
+<p class="yada">This page uses valid 
+<a href="http://validator.w3.org/check/referer">markup</a> and 
+<a href="http://jigsaw.w3.org/css-validator/check/referer">stylesheets</a>.
+</p>
+
+<!-- end all --></div>
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+1.php	A passive script that calculates gross pay.
+2-1a.php	Calculate monthly payments for a loan.
+2-2a.php	Calculate your class average and the corresponding letter grade.
+3-1a.php	Experiment with various font- and background-colors.
+3-2a.php	Dissect strings and identify each character's ASCII code.
+4-1a.php	Compare color combinations.
+4-2a.php	Count the number of times words occur in a passage of text.
+5-1a.php	Can't remember the words to <em>Old MacDonald</em>? Well that's just sad.
+5-2a.php	Calculate your semester GPA.
+6-1a.php	Look up grades by ID number and last name.
+6-2.php	An online image gallery with room to grow.
+7-1.php	Display a table of all CIS course sections, with links to email each instructor.
+7-2.php	See how many students are enrolled in each CIS section, on average.
+8-1.php	Look up students' advisors.
+8-2a.php	Look up course schedules.
+9-1a.php	Already registered at Northwoods? Choose your advisor.
+9-2a.php	Register at Northwoods University.

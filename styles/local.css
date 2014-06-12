@@ -1,0 +1,54 @@
+/*
+ *	local.css
+ *	by Ben Thornton
+ */
+
+body {
+	background: #eff;
+	color: #455;
+	font-family: Georgia, Palatino, Times, serif;
+	font-weight: bold;
+	word-spacing: 0.3em;
+	}
+
+a {
+	font-weight: normal;
+	color: #233;
+	text-decoration: none;
+	}
+
+a:hover {
+	color: #122;
+	text-decoration: underline overline;
+	}
+
+#all {
+	position: absolute;
+	left: 50%;
+	top: 45%;
+	margin: -120px -250px;
+	width: 400px;
+	border: 1px dotted #666;
+	background: #fa0;
+	padding: 50px;
+	}
+
+h1 {
+	font-style: italic;
+	text-align: center;
+	}
+
+ul {
+	text-align: center;
+	padding: 0;
+	}
+li {
+	font-size: 1.0em;
+	display: inline;
+	}
+li:after {
+	content: " \000B7 ";
+	}
+li.last:after {
+	content: "";
+	}

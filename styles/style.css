@@ -1,0 +1,403 @@
+/*
+ *	Avocado
+ *	by Ben Thornton
+ */
+
+
+/*    Basics
+ ***************/
+
+body,
+form table,
+form th,
+form td,
+label {
+	font-family: Georgia, Baskerville, Palatino, Times, serif;
+	}
+
+body {
+	background: #f8fffd;
+/*	background: #ffe; */
+	color: #233;
+	margin: 1em;
+	line-height: 1.4em;
+	}
+
+h1, h2, h3, h4, h5, h6 {
+	line-height: 1.2em;
+	}
+
+a {
+	color: #900;
+	font-weight: bold;
+	text-decoration: none;
+	}
+
+a:hover {
+	color: #fbfffd;
+/*	color: #ffe; */
+	background: #900;
+	text-decoration: none;
+ 	}
+
+
+/*    Forms
+ **************/
+
+form table,
+form th,
+form td {
+	background: transparent;
+	border: none;
+	margin: 0;
+	padding: 0.2em;
+	}
+
+label, form th {
+	font-weight: bold;
+	text-align: right;
+	vertical-align: top;
+	}
+
+form td {
+	text-align: left;
+	}
+
+legend {
+	color: #122;
+	font-size: 1.3em;
+	font-weight: bold;
+	margin: 0.2em;
+	}
+
+/* Too inconsistent across browsers, and screw hiding hacks.
+input, select, option {
+	font-family: "Lucida Grande", Verdana, Helvetica, sans-serif;
+	font-size: small;
+	}
+
+[type="button"], [type="submit"], [type="reset"] {
+	font-family: Georgia, Baskerville, Palatino, Times, serif;
+	}
+*/
+
+
+/*    Tables
+ ***************/
+
+table {
+	border-collapse: collapse;
+	border-left: 1px solid #9aa;
+	border-top: 1px solid #9aa;
+	margin: 0.5em;
+	}
+
+th, td {
+	font-family: "Trebuchet MS", "Lucida Grande", Trebuchet,
+		Verdana, Helvetica, Arial, sans-serif;
+	border-right: 1px solid #566;
+	border-bottom: 1px solid #566;
+	padding: 0.4em;
+	}
+
+th {
+	background: #d8e8e8;
+/*	background: #ddc; */
+	color: #122;
+	}
+
+.th-left th {
+	text-align: left;
+	}
+
+td {
+	text-align: center;
+	}
+
+th code,
+td code {
+	background: transparent;
+	padding: 0 1em;
+	}
+
+td.desc {
+	text-align: left;
+	}
+
+
+/*    Code
+ *************/
+
+code, kbd {
+	font-family: "Courier New", Courier, monospace;
+	font-size: large;
+	line-height: 1.2em;
+	background: #e0ebe8;
+/*	background: #eed; */
+	}
+
+a:hover code {
+	background: transparent;
+	}
+
+
+/*    Blockquotes
+ ********************/
+
+blockquote code {
+	font-size: 14px;
+	font-style: normal;
+	background: transparent;
+	}
+
+blockquote p {
+	font-style: italic;
+	}
+
+
+/*    Odds & Ends
+ ********************/
+
+acronym, abbr {
+	border: none;
+	font-style: normal; /* for Safari */
+	}
+
+dt {
+	font-weight: bold;
+	}
+
+dd {
+	margin-bottom: 1em;
+	}
+
+dfn {
+	font-style: normal;
+	}
+
+hr {
+	border: none;
+	border-top: 1px solid #9a9;
+	}
+
+ol li ol li{
+	list-style-type: lower-roman;
+	}
+
+[title] {
+	cursor: help;
+	}
+
+var {
+	font-weight: bold;
+	font-style: normal;
+	}
+
+
+/*    Individual Assignments
+ *******************************/
+/*
+#four-one-b,
+#four-one-b th {
+	background: #222;
+	color: #eaeaea;
+	}
+*/
+#four-one-b th {
+	font-family: Georgia, Baskerville, Palatino, Times, serif;
+	text-align: left;
+	font-weight: normal;
+	background: transparent;
+	}
+
+#four-one-b td {
+	font-weight: bold;
+	}
+
+#four-one-b table,
+#four-one-b th,
+#four-one-b td {
+	border: none;
+	border-collapse: collapse;
+	}
+
+.six-two th {
+	text-align: right;
+	}
+
+.six-two td {
+	text-align: left;
+	}
+
+
+/*    Classes & IDs
+ **********************/
+
+.ample {
+	width: 35em;
+	}
+
+.ample p {
+	margin: 0 0 1em 0;
+	text-align: justify;
+	}
+
+.ample .related {
+	text-align: left;
+	}
+
+.ample h3 {
+	margin-bottom: 0.2em;
+	}
+
+.ample table {
+	margin-bottom: 1.2em;
+	}
+
+.blog h3 {
+	font-variant: small-caps;
+	margin-bottom: 0;
+	}
+
+.blog p {
+	margin-top: 0;
+	}
+
+.blog .byline {
+	font-size: 0.75em;
+	font-style: italic;
+	margin: 0;
+	}
+
+.blog [colspan="2"] {
+	text-align: right;
+	}
+
+.blog input,
+.blog textarea {
+	font-family: Verdana, sans-serif;
+	}
+	
+#colophon table {
+	margin-left: auto;
+	margin-right: auto;
+	}
+
+.error {
+	color: #b00;
+	font-weight: bold;
+	font-style: italic;
+	}
+
+.error code {
+	font-style: normal;
+	}
+
+.key {
+	font-family: Verdana, "Trebuchet MS", "Lucida Grande",
+		Helvetica, sans-serif;
+	font-size: small;
+	border: 1px solid #344;
+	}
+
+.segue {
+	font-style: italic;
+	text-decoration: underline;
+	}
+
+.num {
+	text-align: right;
+	}
+
+.related {
+	font-size: 0.8em;
+	font-style: italic;
+	}
+
+.related code {
+	font-size: 1.3em;
+	font-style: normal;
+	}
+
+.showsource {
+	line-height: 1.2em;
+	margin-right: 0;
+	margin-bottom: 3em;
+	}
+
+.showsource b {
+	color: #888;
+	}
+	
+.showsource blockquote {
+	background: #fff;
+	color: #000;
+	border: 1px solid #bbb;
+	border-right: none;
+	padding: 0 0.2em;
+	margin: 0 0 0 1em;
+	}
+
+.showsource form {
+	position: absolute;
+	top: 1.8em;
+	right: 1.5em;
+	}
+
+.skip {
+	display: none;
+	}
+
+.test {
+	font-weight: bold;
+	}
+
+.yada, .ample .yada {
+	font-size: 0.8em;
+	text-align: center;
+	}
+
+
+/*    Markup Generator
+ *************************/
+
+.mg {
+	width: 40em;
+	}
+
+.mg fieldset {
+	background: #dee;
+/*	background: #eed; */
+	padding: 1em;
+	margin: 0 0 1em 0;
+	border: 1px dotted #344;
+	} /* Looks bad in IE */
+
+.mg fieldset a,
+.mg .yada a {
+	color: #344;
+	}
+
+.mg fieldset a:hover,
+.mg .yada a:hover {
+	color: #eff;
+/*	color: #ffe; */
+	background: #344;
+	}
+
+.mg form {
+	text-align: right;
+	}
+
+.mg .yada {
+	font-size: 0.7em;
+	margin: 0 1em 2em 1em;
+	}
+
+.mg #ccc {
+	float: right;
+	}
+
+.mg #validate {
+	float: left;
+	}

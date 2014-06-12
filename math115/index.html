@@ -1,0 +1,504 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Math 115 - Discrete Mathematics</title>
+<meta name="author" content="Ben Thornton" />
+<link rel="stylesheet" type="text/css" href="../print.css" media="print" />
+<style type="text/css"><!--
+
+@import url(../styles/style.css);
+@import url(../styles/notes.css);
+
+--></style>
+</head>
+
+<body id="cs160a">
+
+<div id="all">
+
+<h1>Discrete Mathematics</h1>
+
+<p>These are my notes for <a href="http://fog.ccsf.cc.ca.us/~gboyd/cs160a/Syllabus.html" title="Syllabus for CS 160A, Spring 2008, by Greg Boyd">Math 115</a>.</p>
+
+<table id="timetable"><tr><td>
+
+<table class="month"><caption>January 2008</caption><tr>
+  <th><acronym title="Sunday">S</acronym></th>
+  <th><acronym title="Monday">M</acronym></th>
+  <th><acronym title="Tuesday">T</acronym></th>
+  <th><acronym title="Wednesday">W</acronym></th>
+  <th><acronym title="Thursday">R</acronym></th>
+  <th><acronym title="Friday">F</acronym></th>
+  <th><acronym title="Saturday">S</acronym></th>
+</tr><tr>
+  <td></td>
+  <td></td>
+  <td>1</td>
+  <td>2</td>
+  <td>3</td>
+  <td>4</td>
+  <td>5</td>
+</tr><tr>
+  <td>6</td>
+  <td>7</td>
+  <td>8</td>
+  <td>9</td>
+  <td>10</td>
+  <td>11</td>
+  <td>12</td>
+</tr><tr>
+  <td>13</td>
+  <td><a href="#jan14" title="First day of class">14</a></td>
+  <td>15</td>
+  <td><a href="#jan16" title="Second day of class">16</a></td>
+  <td>17</td>
+  <td>18</td>
+  <td>19</td>
+</tr><tr>
+  <td>20</td>
+  <td title="MLK Day">21</td>
+  <td>22</td>
+  <td><a href="#jan23" title="Second day of class">23</a></td>
+  <td>24</td>
+  <td>25</td>
+  <td>26</td>
+</tr><tr>
+  <td>27</td>
+  <td>28</td>
+  <td>29</td>
+  <td>30</td>
+  <td>31</td>
+  <td></td>
+  <td></td>
+</tr></table>
+
+<!-- #timetable --></td></tr></table>
+
+<h2 id="jan14">January 14<sup>th</sup>, 2008</h2>
+<h2 id="jan16">January 16<sup>th</sup>, 2008</h2>
+
+<h3 id="propositional-logic">Propositional Logic</h3>
+<p>A <dfn>tautology</dfn> is something that is always true.</p>
+
+<pre>
+Variations of p &rarr; q
+English:
+If it rains, I'll bring an umbrella.
+r &rarr; u
+~u &rarr; ~r
+u &rarr; r
+~r &rarr; ~u
+
+Which statements are EQUIVALENT:
+1. p &rarr; q
+2. q &rarr; p    the CONVERSE of p &rarr; q
+3. ~p &rarr; ~q  the INVERSE of p &rarr; q
+4. ~q &rarr; ~p  the CONTRAPOSITIVE of p &rarr; q
+
+Ex: [Calculus] Theorem:
+f differentiable &rarr; f continuous
+<u>Proof</u> see Math 110A
+So, by LOGIC, we <u>also</u> get
+not continuous &rarr; not differentiable.
+
+but
+
+f differentiable &rarr; f continuous
+does <u>not</u> follow directly from logic.
+In fact, we can give a calculus COUNTEREXAMPLE.
+
+<u>Theorem</u> [Writing p &rarr; q using only &or;, ~]
+(p &rarr;) <-> (~p &or; 1)
+<u>Proof:</u>
+</pre>
+
+<table class="truth"><tr>
+	<th>p</th>
+	<th>q</th>
+	<th>p &rarr; q</th>
+	<th>~p</th>
+	<th>~p &or; q</th>
+</tr><tr>
+	<td>0</td>
+	<td>0</td>
+	<td>1</td>
+	<td>1</td>
+	<td>1</td>
+</tr><tr>
+	<td>0</td>
+	<td>1</td>
+	<td>1</td>
+	<td>1</td>
+	<td>1</td>
+</tr><tr>
+	<td>1</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+</tr><tr>
+	<td>1</td>
+	<td>1</td>
+	<td>1</td>
+	<td>0</td>
+	<td>1</td>
+</tr></table>
+
+<pre>
+<u>Theorem</u> [Negation of p &rarr; q]
+~(p &rarr; q) <-> (p &and; ~q)
+<u>Proof:</u> Don't <u>need</u> whole truth table. Instead we will use earlier laws, and DEDUCTION.
+~(p &rarr; q) <-> ~(~p &or; q)
+               |        |
+          earlier law   |- DeMorgan
+                        |
+           ~(~p) &and; ~q <-> p &and; ~q
+                Double Negative Law
+
+Theorem: (p <-> q) <-> (p &rarr;) &and; (q &rarr; p)
+Proof: (exercise) truth tables
+
+Now, some XOR laws.
+Recall definition:
+</pre>
+
+<table class="truth"><tr>
+	<th>p</th>
+	<th>q</th>
+	<th>p &xor; q</th>
+</tr><tr>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+</tr><tr>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+</tr><tr>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+</tr><tr>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+</tr></table>
+
+<pre>
+Theorem: p &xor; p <-> F
+Proof:
+</pre>
+
+<table class="truth"><tr>
+	<th>p</th>
+	<th>p &xor; p</th>
+</tr><tr>
+	<td>0</td>
+	<td>0</td>
+</tr><tr>
+	<td>1</td>
+	<td>0</td>
+</tr></table>
+
+<pre>
+One <u>can</u> write p &xor; = 0
+
+Theorem: [Used for encryption]
+(K = key; m = message)
+K &xor; K &xor; <-> m
+Proof:
+</pre>
+
+<table class="truth"><tr>
+	<th>m</th>
+	<th>K</th>
+	<th>K &xor; K</th>
+	<th>(K &xor; K) &xor; m</th>
+</tr><tr>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+</tr><tr>
+	<td>0</td>
+	<td>1</td>
+	<td>0</td>
+	<td>0</td>
+</tr><tr>
+	<td>1</td>
+	<td>0</td>
+	<td>0</td>
+	<td>1</td>
+</tr><tr>
+	<td>1</td>
+	<td>1</td>
+	<td>0</td>
+	<td>1</td>
+</tr></table>
+
+<pre>
+Ex: Apply that law to illuminate so-called "ONE-TIME PAD" ENCRYPTION
+Let's send the letter "A".
+1. ASCII code for "A" is the number 65.
+2. 65 is converted to BINARY: 0100 0001
+3. Now, get your "pad" (your key). Let's say it is 0110 1110.
+4. ENCRYPT the message with your key.
+   m: 0100 0001
+   K: 0110 1110
+   K &xor; m: 0010 1111
+5. Send the encrypted message to your friend.
+6. Your friend DECRYPTS the message.
+   K &xor; m: 0010 1111
+   K: 01101110
+   K &xor; (K &xor; m): 0100 0001
+7. Your friend converts the binary message to ASCII: "A".
+
+Theorem: [Negation of p <-> q]
+~(p <-> q) <-> p &xor; q
+Proof: Exercise
+</pre>
+
+<h3 id="inference">Valid Rules of Inference</h3>
+<pre>
+a.k.a. "Correct reasoning"
+
+Ex: 
+
+The premises:
+p &rarr; q     "If it's raining, I'll bring my umbrella."
+p           "You know, it is raining."
+
+The conlusion:
+&thus; q         "Okay, I'll bring my umbrella."
+
+How can we verify that a rule of inference is indeed valid?
+You verify, usually using a truth table, that
+(p &rarr; q) &and; q is a tautology (is a theorem, is <u>true</u> for all values of p and q).
+
+Exercise: Use truth tables to show that (p &rarr;) &and; p &rarr; q
+
+Ex:
+I live is SF &rarr; I live in CA
+I live is SF
+&thus; I live in CA
+
+p &rarr; q
+~q
+&thus; ~p
+Valid.
+Exercise: prove that (p &and; q) &and; ~q &rarr; ~p
+
+~p &rarr; F
+&thus; p
+Exercise: verify that (~p &rarr; F) &rarr; p
+"Proof by contradiction"
+
+Homework has been posted online.
+</pre>
+
+<h2 id="jan23">January 23<sup>rd</sup>, 2008</h2>
+<pre>
+Continuing Logic
+
+Things to do:
+* MINTERMS
+* Valid RULES OF INFERENCE
+* Some proofs of <u>unique</u> theorems.
+* In particular: Proofs BY CONTRADICTION
+* "Karnaugh Maps", next week
+* Quantifiers: &exist;x &forall;x
+</pre>
+
+<h3>Minterms:</h3>
+<pre>
+Variables		How Many?
+p	p, ~p	2
+p, q	p &and; q, ~p &and; q, p &and; ~q, ~p &and; ~q	4
+p, q, r		8
+
+The minterms are <u>minimal</u> in this sense:
+Truth table (erased)
+
+Ex: Write p &xor; q as a "sum" (DISJUNCTION) of minterms.
+
+pq | p &xor; q | minterm
+00 |     0     |
+01 |     1     | ~p &and; q
+10 |     1     | p &and; ~q
+11 |     0     |
+   |           | ~p &and; q &or; p &and; ~q &lArr; "sum"
+</pre>
+
+<h3>Quantifiers:</h3>
+<pre>
+Notation:
+"There exists an x (in our universe) such that &hellip;"
+&exist;x&hellip;
+
+&exist;x (x &lt; 5)
+&exist;x (x<sup>2</sup> = 25)
+&exist;x (x<sup>2</sup> = 2)
+
+"For all x (in our universe) &hellip;"
+&forall;x&hellip;
+Examples:
+&forall;x (x<sup>2</sup> &gte; x)
+&forall;x (x &gte; 1 &rarr; x<sup>2</sup> &gte; x)
+&forall;x&exist;y (y &gt; x)
+</pre>
+
+<h3><u>Negation</u> of Quantifiers.</h3>
+<pre>
+
+Rule: &forall;x &phi;(x) <-> &exist;x ~&phi;(x)
+Ex; ~&forall;x(x &gte; 0) <-> &exist;x (
+
+Rule: ~&exist;&phi;(x) <-> &forall;x ~&phi;(x)
+
+Ex: "There is a biggest number (in our universe)."
+&exist;x &forall;y (y &lte; x)
+The negation "There is no biggest number."
+~&exist;x &forall;y (y &lte; x) <-> &forall;x ~&forall;y (y &lte; x) <-> &forall;x &exist;y (y &gt; x)
+
+Define: a/b "a divides b" or better "b is a multiple of a"
+Universe: {0, 1, 2, &hellip;}
+Definition: a/b <-> &exist;K (b = Ka)
+
+statement | T/F
+   5/20   | T (use K = 4)
+   5/5    | T
+   5/0    | T (use K = 0)
+   5/1    | F
+   1/5    | T (use K = 5)
+   0/0    | T (use K = 0)
+
+Ex: Use logic to simplify
+a &doesnotdivide; b <-> ~(a/b) <-> ~&exist;K (b = Ka) <-> &forall;K (b &doesnotequal; Ka)
+</pre>
+
+<h3>Valid Rules of Inference, continued</h3>
+<pre>
+Some valid rules:
+
+p &rarr; q
+p
+&thus; q
+
+p &rarr; q
+~q
+&thus; ~p
+
+p &rarr; q
+~p &rarr; q
+&thus; q
+
+Proof by cases:
+a &or; b
+a &rarr; q
+b &rarr; q
+&thus; q
+
+Proof by contradiction
+~p &rarr; F (F = "contradiction")
+&thus; p
+
+<hr>
+Prove that: "given 2 numbers, one of them must be less than equal to the <u>average</u>."
+Theorem: a &lte; (a+b/2) &or; b &lte; (a+b/2)
+
+Proof structure:
+~p &rarr; F
+&thus; p
+
+Proof:
+p: a &lte; (a+b/2) &or; b &lte; (a+b/2)
+p: ~(a &lte; (a+b/2) &or; b &lte; (a+b/2)) <-> (a &gt; (a+b/2) &and; b *gt; (a+b/2)) (via DeMorgan)
+	&rarr; (a+b) &gt; (a+b/2) + (a+b/2)) (algebra)
+	&rarr; (a+b &gt; a+b) (algebra)
+	&rarr; F
+
+<hr>
+Theorem: "If a number n can be factored, then one of the factors must be &lte; &hellip;"
+
+More "logical" theorem: n = ab &rarr; a&lte;&sqrt;n &or; b&lte;&sqrt;n
+
+Proof: Exercise (very similar to the last example).
+
+<hr>
+Theorem: "The square of an even number is even."
+
+Better theorem: 2/n &rarr; 2/n<sup>2</sup>
+
+Proof:
+2/n, so &exist;K (n = 2K)
+so n<sup>2</sup> = (2K)<sup>2</sup> = 4K^2 = 2(2K)^2
+so 2/n^2
+
+<hr>
+Theorem: If n is <u>odd</u>, then n^2 is odd.
+
+Better theorem: n = 2K + 1 &rarr; n^2 is odd
+
+Proof: Exercise.
+
+Basic idea; (2K + 1)^2 = 4K^2 +4K + 1 = 2(2K^2 + 2K) + 1 is odd
+
+<hr>
+Theorem: If n^2 is even, then n is even.
+
+Better theorem: 2/n^2 &rarr; 2/n
+
+Proof (first attempt):
+2/n^2
+n^2 = 2K, for some K
+n = &sqrt;2K (stuck!!)
+
+Proof (2nd attempt):
+n^2 even &rarr; n even
+n not even &rarr; n^2 not even (contrapositive)
+n odd &rarr; n^2 odd (True. See last theorem.)
+
+Remember: contrapositive (p &rarr; q) <-> (~q &rarr; ~p)
+
+<hr>
+Theorem: n^2 off &rarr; n odd
+
+Proof: Prove the contrpositive instead.
+
+no not odd &rarr; n^2 not odd
+n even &rarr; n^2 even (Proved earlier!)
+
+<hr>
+Classic proof  by contradiction.
+Theorem: &sqrt; is <u>not</u> a rational number.
+In other words: &sqrt;2 &notroundE; Q
+
+Proof:
+p: &sqrt &notroundE q
+~p &rarr; F
+&thus; p
+
+~p: &sqrt;2 &roundE; Q
+&sqrt;2 = a/b
+a = &sqrt;b
+a^2 = 2b^2
+
+2/a^2
+2/a (by our earlier theorem)
+a = 2K
+
+(2K)^2 = 2b^2
+4K^2 = 2b^2
+b^2 = 2K^2
+b^2 is even, so b is even
+b = 2m, for some m.
+
+So, both a and b are even.
+But, a/b was reduced to lowest terms!
+So p is true by contradiction.
+</pre>
+
+</body>
+</html>

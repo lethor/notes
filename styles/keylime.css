@@ -1,0 +1,116 @@
+/*
+ *	Key Lime
+ *	by Ben Thornton
+ */
+
+
+/*    Elements
+ *****************/
+
+body {
+	font-family: "Trebuchet MS", "Lucida Grande", Trebuchet, Tahoma, Verdana, Helvetica, Arial, sans-serif;
+	}
+
+body {
+	color: #112;
+	background: #efd;
+	width: 40em;
+	margin: auto;
+	text-align: justify;
+	line-height: 1.6em;
+	}
+
+a {
+	color: #280;
+	font-weight: bold;
+	text-decoration: none;
+	}
+
+a:hover {
+	color: #ffe;
+	background: #280;
+	}
+
+acronym, abbr {
+	border: none;
+	font-style: inherit;
+	}
+
+dt {
+	font-weight: bold;
+	}
+
+h1 {
+	font-family: Georgia, Baskerville, Palatino, Times, serif;
+	background: #cd9;
+	border: 1px solid #112;
+	color: #334;
+	margin: 0;
+	width: 100%;
+	text-align: center;
+	line-height: 1.2em;
+	}
+
+
+/*    Deletions & Insertions
+ *******************************/
+
+del {
+	display: none;
+	}
+
+ins {
+	text-decoration: none;
+	}
+
+ins p, #vi p {
+	color: #211;
+	padding: 0.1em 0.3em;
+	background: #f8fff4;
+	border: 1px solid #dfb;
+	}
+
+p ins {
+	font-style: italic;
+	}
+
+p ins:before {
+	content: "[";
+	}
+
+p ins:after {
+	content: "]";
+	}
+
+p ins i, p ins em, p ins cite {
+	text-decoration: underline;
+	}
+
+
+/*    Classes & IDs
+ **********************/
+
+#all {
+	background: #fdfdfa;
+	padding: 1em;
+	border-right: 1px solid #999;
+	border-left: 1px solid #999;
+	}
+
+#resolution dd {
+	margin-bottom: 1em;
+	}
+
+#editors h2 {
+	margin-top: 1.5em;
+	text-align: center;
+	}
+
+#vi h2 {
+	font-size: 1em;
+	margin-bottom: 0;
+	}
+
+#vi pre {
+	margin: 0;
+	}

@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Text Editors</title>
+<meta name="author" content="Ben Thornton">
+<link rel="stylesheet" type="text/css" href="styles/keylime.css">
+<link rel="stylesheet" type="text/css" href="styles/print.css" media="print">
+</head>
+
+<body class="cheat" id="editors">
+
+<div id="all">
+
+<h1>Text Editors</h1>
+
+<p>Unix offers several choices for editing text. This document attempts to describe the most common editors without getting bogged down in opinion.</p>
+<ol id="toc">
+<li><a href="#pico">pico</a></li>
+<li><a href="#vi">vi</a></li>
+<li><a href="#emacs">Emacs</a></li>
+<li><a href="#epilogue">Epilogue</a></li>
+</ol>
+
+<h2 id="pico">pico</h2>
+<p>Pico is simple. It's part of the pine email program; so if you've ever used pine, you've used pico. <a href="pico.html">The commands appear at the bottom of the screen.</a></p>
+
+<h2 id="vi" title="Pronounced: &quot;vee eye&quot; or just &quot;vye&quot;">vi</h2>
+<p>vi is a powerful, yet frugal text editor.</p>
+<p>vi's main strengths are these:</p>
+<ul>
+<li>vi can be found on almost every installation of Unix.</li>
+<li>Once you learn vi, you can edit text quickly and easily.</li>
+<li>vi uses relatively few resources (bandwidth, memory, etc.).</li>
+<li>Since vi's not extensible, every copy of vi works the same.</li>
+</ul>
+<p>vi also has some weaknesses:</p>
+<ul>
+<li>Commands don't seem to make sense at first, so there's a steep learning curve.</li>
+<li>Since vi's not extensible, you can't add features.</li>
+</ul>
+<p>Bill Joy wrote vi in 1976. He recounts <a href="http://www.linux-mag.com/1999-11/joy_04.html">a brief history of vi</a> in an <a href="http://www.linux-mag.com/1999-11/joy_01.html" title="Bill Joy on Sun, Microsoft, Linux, BSD, and what makes them tick.">interview with Linux Magazine</a>.</p>
+<p>vim is vi improved. It has a few nice touches like syntax-highlighting and a help system which make it easier to use. You can <a href="http://www.vim.org/download.php">download a copy of vim</a> for most platforms.</p>
+<p>The <a href="vi.html">vi cheat sheet</a> can be a handy reference for beginners.</p>
+
+<h2 id="emacs">Emacs</h2>
+<p>Emacs is the most powerful text editor hands-down. Here's why:</p>
+<ul>
+<li>Emacs lets you edit multiple documents simultaneously.</li>
+<li>Emacs has different "modes" for just about every situation.</li>
+<li>Emacs has a built-in <a href="http://www.paulgraham.com/rootsoflisp.html">Lisp</a> interpreter, making it infinitely extensible.</li>
+</ul>
+<p>But, there are drawbacks:</p>
+<ul>
+<li>Emacs is a huge resource hog.</li>
+<li>Emacs is addictive, and may turn you into a bigot.</li>
+</ul>
+<p>To make the most of Emacs' swell features you must have access to both Emacs itself and your Emacs profile. There will be times when you don't.</p>
+<p>Emacs is ideal for large projects. It has all of vi's capabilities and more. You can even use Emacs in viper mode which mimics many of vi's commands.</p>
+<p>Richard Stallman amalgamated Emacs in 1976. Wikipedia has a write-up detailing <a href="http://en.wikipedia.org/wiki/Emacs">Emacs' history and usage</a>.</p>
+
+<h2 id="epilogue">Epilogue</h2>
+<p>If you only use Unix occasionally then pico will suit you just fine. However, you will not be able to do certain things, like replace text automatically. If there is any possibility that you have a future working with Unix, it would be wise to learn vi. If you find that vi doesn't suit you, try Emacs.</p>
+<p>Although these are arguably the most popular text editors in Unix environments, there are many more. Don't feel like you have to use these just because they are the most common.</p>
+<p>Writing a text editor from scratch is not trivial, but neither is it an insurmountable task. Many computer science departments have their students write a basic text editor at some point in their curriculum. Thus, Unix has nearly as many editors as New Zealand has sheep.</p>
+
+</div>
+
+</body>
+</html>
